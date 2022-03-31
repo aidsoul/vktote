@@ -25,7 +25,7 @@ $config =  [
     'Telegram'  =>[
       	'botApiKey'     => '',
       	'botName'       => '',
-     	  'chatId'        =>  0
+     	'chatId'        =>  0
     ],
     'Db'        =>[
        	'host'          => 'mysql:host=localhost',
