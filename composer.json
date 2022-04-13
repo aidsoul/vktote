@@ -1,0 +1,19 @@
+{
+    "name": "aidsoul/vktote",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vktote\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "aidsoul",
+            "email": "work-aidsoul@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=8",
+        "longman/telegram-bot": "^0.74.0"
+        }
+}
