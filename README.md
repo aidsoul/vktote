@@ -9,7 +9,7 @@ This is auto-posting from a VK group to a telegram channel.
 ## Installation
   
 You need:
- - apache;
+ - apache ;
  - php 8.1;
 
 To install, use the command: `git clone https://github.com/aidsoul/vktote`.
@@ -24,14 +24,12 @@ Or use command `composer require aidsoul/vktote`.
 > In the "groups" folder, folder with the files listed below are added. All these files are needed for work. Come up with a name for the folder yourself. 
 
 The following example is a true profile group creation:
-
-| groups | |  |
-|-|--|-|-|
-| test |config.ini| index.php |
-| test1 |config.ini| index.php |
-| test2 |config.ini| index.php |
-|...|config.ini| index.php |
-
+```
+groups
+[test]=>[config.ini,index.php]
+[test1]=>[config.ini,index.php]
+[...]=>[config.ini,index.php]
+```
 >If necessary, you can change the folder and the name of the files in the configuration file "**config.php**".
 
 Configuration file "**config.ini** " should look like this:
