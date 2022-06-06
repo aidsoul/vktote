@@ -1,0 +1,52 @@
+{% extends 'layout/base.twig' %}
+{% block header %}
+{% if user == true %}
+<div class="d-flex flex-row flex-wrap">
+    <div class="itm mx-1 mb-1">
+      <a class="btn btn-primary" href="/settings"  aria-current="page" >Settings</a>
+    </div>
+    <div class="itm mx-1 mb-1">
+      <form method="POST" action="/exit">
+      <input type="submit"  class="btn btn-primary" value="Exit">
+      </form>
+    </div>
+</div>
+{% else %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">login</button>
+{% endif %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p class="fw-light">Registration will be performed at the first login.</p>
+        <p class="fw-light">Remember the entered password!</p>
+      <div id="alert">
+      </div>
+        <form method="POST">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Password:</label>
+            <input type="password" id="password" class="form-control" id="recipient-name">
+            <br>
+              <button id="login" type="button" class="btn btn-primary">login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="/public/js/login.js"></script>
+{% endblock %}
+
+{% block body %}
+<p>Simple bot control panel</p>
+{% endblock %}
