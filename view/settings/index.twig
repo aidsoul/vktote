@@ -1,0 +1,41 @@
+{% extends 'layout/settings.twig' %}
+{% block title %}Settings{% endblock %}
+{% block body %}
+<div id="alert"></div>
+  <p><a href="/settings/group/add" class="btn btn-primary">Create a settings profile</a></p>
+  {% if dir|length > 0 %}
+  <table class="table">
+  <thead>
+    <tr class="table-primary">
+     <th scope="col">#</th>
+      <th scope="col">Name</th>
+       <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="table-light">
+
+
+
+  {% for k,i in dir %}
+
+    <tr>
+     <th scope="row">{{k+1}}</th>
+      <td><a href="group?name={{ i }}">{{ i }}</a></td>
+      <td>
+      <button id="spinner-{{i}}" type="button" class="btn-close" onclick="del('{{ i }}')">
+      </button>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>
+You don't have group profiles!
+</p>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script src="/public/js/folderProfile.js"></script>
+{% endblock %}
