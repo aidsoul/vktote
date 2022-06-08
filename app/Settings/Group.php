@@ -56,7 +56,13 @@ class Group
         return json_encode($send);
     }
 
-
+    /**
+     * Check exist file function
+     *
+     * @param string $file
+     * @param integer $status
+     * @return void
+     */
     private function checkFileExist(string $file, int $status){
         if(!file_exists($file)){
             die(json_encode(['status'=> $status,'name'=>$file]));
