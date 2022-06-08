@@ -31,7 +31,7 @@
 </div>
 <div class="mb-3">
     <label class="form-label">Name of the configuration profile</label>
-    <input type="text" class="form-control" name="fileName" send required>
+    <input rval type="text" class="form-control" name="fileName" send required>
 </div>
 <hr>
 <div class="mb-3">
@@ -40,20 +40,20 @@
 
 <div class="mb-3">
     <label class="form-label">Host</label>
-    <input type="text" class="form-control" name="host" send required>
+    <input rval type="text" class="form-control" name="host" send required>
     <div class="form-text">Example: mysql:host=localhost</div>
 </div>
 <div class="mb-3">
     <label class="form-label">Database name</label>
-    <input type="text" class="form-control" name="dbName" send required>
+    <input rval type="text" class="form-control" name="dbName" send required>
 </div>
 <div class="mb-3">
     <label class="form-label">Database User</label>
-    <input type="text" class="form-control" name="user" send required>
+    <input rval type="text" class="form-control" name="user" send required>
 </div>
 <div class="mb-3">
     <label class="form-label">Password of the database user</label>
-    <input type="text" class="form-control" name="pass" send required>
+    <input rval type="text" class="form-control" name="pass" send required>
 </div>
 <hr>
 <div class="mb-3">
@@ -61,15 +61,15 @@
     </div>
 <div class="mb-3">
     <label class="form-label">Token</label>
-    <input type="text" class="form-control" name="token" send required> 
+    <input rval type="text" class="form-control" name="token" send required> 
 </div>
 <div class="mb-3">
     <label class="form-label">Group ID</label>
-    <input type="text" class="form-control" name="idGroup" send required>
+    <input rval type="text" class="form-control" name="idGroup" send required>
 </div>
 <div class="mb-3">
     <label class="form-label">Number of posts to update</label>
-    <input type="text" class="form-control" name="count" send required>
+    <input rval rnumb type="text" class="form-control" name="count" send required>
         <div class="form-text">Max count post = 100</div>
 </div>
 <hr>
@@ -78,15 +78,15 @@
     </div>
 <div class="mb-3">
     <label class="form-label">API Access Key</label>
-    <input type="text" class="form-control" name="botApiKey" send required>
+    <input rval type="text" class="form-control" name="botApiKey" send required>
 </div>
 <div class="mb-3">
     <label class="form-label">Bot Name</label>
-    <input type="text" class="form-control" name="botName" send required>
+    <input rval type="text" class="form-control" name="botName" send required>
 </div>
 <div class="mb-3">
     <label class="form-label">Chat ID</label>
-    <input type="text" class="form-control" name="chatId" send required> 
+    <input rval type="text" class="form-control" name="chatId" send required> 
 </div>
 <button id="btn-add" class="btn btn-primary">Create file</button>
 </form>
@@ -97,4 +97,5 @@
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
   <script src="/public/js/group-add.js"></script>
+      <script src="/public/js/validations.js"></script>
 {% endblock %}

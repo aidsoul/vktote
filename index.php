@@ -8,7 +8,7 @@ use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Route\Router;
 
 /**
- * Include condige file
+ * Include confige file
  */
 include 'config.php';
 

@@ -15,7 +15,7 @@ $( document ).ready(function() {
         let name = input.name;
         if(value == ''){
             itm++;
-            $('input[name="'+name+'"]').val('The field is empty');
+            $('input[name="'+name+'"]').val('The field is empty!');
         }else{
             dataS.set(name,value);
         }
