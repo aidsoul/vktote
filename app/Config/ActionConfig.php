@@ -23,7 +23,7 @@ trait ActionConfig
     { 
         try{
             $className = (new \ReflectionClass($this))->getShortName();
-            if(!empty($property)){
+            if(!empty( $property )){
                 if (array_key_exists($className, parent::$config) and 
                 property_exists($this, $property) and
                 array_key_exists($property, parent::$config[$className]
@@ -36,7 +36,7 @@ trait ActionConfig
                             Message::find()->show(false, __TRAIT__, 'tag', "{$className}");
                         }
                         $this->$property = $item;
-                        if (!method_exists($this, $property) or 
+                        if (!method_exists($this, $property) or
                             method_exists($this, $property) and
                             $this->$property() === true
                         ) {

@@ -5,7 +5,7 @@ namespace Vktote\Http\Controllers;
 /**
  * UserInterface interface
  */
-interface UserInterface 
+interface UserInterface
 {
     public function __construct();
 }

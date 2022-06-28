@@ -30,7 +30,6 @@ class SettingsController extends Controller implements UserInterface
                 $dir[] = $i;
             }
         }
-        
         $this->writePage('settings/index.twig',compact('dir'));
         return $this->response;
     }
@@ -48,10 +47,10 @@ class SettingsController extends Controller implements UserInterface
      */
     public function groupAddRequest():ResponseInterface
     {
-       $this->response
+        $this->response
         ->getBody()
-        ->write((new Group)->create());
-
+        ->write((new Group)
+        ->create());
         return $this->response;
     }
 
