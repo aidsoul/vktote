@@ -22,6 +22,6 @@ class Config
    */
     public static function set(string $сonfigPath):void
     {
-        self::$config = parse_ini_file($сonfigPath,true);
+        self::$config = parse_ini_file($сonfigPath, true);
     }
 }

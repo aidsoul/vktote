@@ -88,7 +88,6 @@ class Wall
                 $this->item->set($valueAttach);
             }
         }
-
             (new Telegram)->send($this->item->get());
     }
 

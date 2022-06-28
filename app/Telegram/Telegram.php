@@ -116,14 +116,12 @@ class Telegram
             /**
              * !!!
              */
-
                 if (isset($v['link'])) {
                     foreach ($v['link'] as $itmLink) {
                         $this->link = $itmLink;
                         $this->link();
                     }
                 }
-
                 if ($v['author'] !== 0) {
                     $this->author = $v['author'];
                     $this->author();

@@ -50,11 +50,9 @@ class Message
         string $className,
         string $messageName,
         string $messageAdd = ''
-    ):void 
-    {
+    ):void {
         if (class_exists($className) or trait_exists($className)) {
-            $message = $this->messageArr[$className = 
-            (new \ReflectionClass($className))
+            $message = $this->messageArr[$className = (new \ReflectionClass($className))
             ->getShortName()][$messageName] . ' ' . $messageAdd;
             if ($type === false) {
                 exit($message);

@@ -28,7 +28,6 @@ class Help
      */
     public static function addHeader(string $header):string
     {
-
         return "[{$header}]\n";
     }
 }

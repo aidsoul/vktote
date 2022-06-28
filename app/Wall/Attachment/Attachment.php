@@ -35,7 +35,7 @@ class Attachment extends Item
         $this->id = $id;
         $this->text = $text;
         $this->author = $author;
-        $this->cleanAttach[$id] = ['text'=>$text];
+        $this->cleanAttach[$id] = ['text' => $text];
         $this->cleanAttach[$id]['author'] =  $author;
     }
 
@@ -45,16 +45,15 @@ class Attachment extends Item
      * @param array $attachment
      * @return void
      */
-    public function set(array $attachment):void
+    public function set(array $attachment): void
     {
         $this->attachment = $attachment;
         $type = $attachment['type'];
 
         //delete post if exist type = 'video'
-        if($type === 'video'){
+        if ($type === 'video') {
             unset($this->cleanAttach[$this->id]);
         }
-
         if (method_exists($this, $type)) {
             $this->$type();
         }
@@ -65,16 +64,16 @@ class Attachment extends Item
      *
      * @return void
      */
-    private function photo():void
+    private function photo(): void
     {
         $this->cleanAttach[$this->id]['media'][] = (new Photo($this->attachment[__FUNCTION__]))->get();
     }
-    
+
     /**
      * Video function
      *
      * Turn on if it is ready
-     * 
+     *
      * @return void
      */
     // private function video():void
@@ -86,7 +85,7 @@ class Attachment extends Item
      *
      * @return void
      */
-    private function link():void
+    private function link(): void
     {
         $this->cleanAttach[$this->id]['link'][] = (new Link($this->attachment[__FUNCTION__]))->get();
     }
@@ -96,7 +95,7 @@ class Attachment extends Item
      *
      * @return array
      */
-    public function getMedia():array
+    public function getMedia(): array
     {
         return $this->media;
     }

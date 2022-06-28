@@ -9,13 +9,11 @@ namespace Vktote\File;
  */
 class File
 {
-
     private string $folder;
     private string $configPath;
     private string $iniFile;
     private string $iniFullPath;
     private string $phpPath;
-
 
     /**
      * Set function

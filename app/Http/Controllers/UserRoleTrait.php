@@ -8,7 +8,6 @@ namespace Vktote\Http\Controllers;
  * @author aidsoul <work-aidsoul@outlook.com>
  */
 trait UserRoleTrait{
-
     public function __construct()
     {
         parent::__construct();
