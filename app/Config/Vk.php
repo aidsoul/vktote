@@ -3,6 +3,7 @@
 namespace Vktote\Config;
 
 use Vktote\Message\Message;
+use Vktote\Config\ConfigInterface;
 
 /**
  * Vk class
@@ -10,7 +11,7 @@ use Vktote\Message\Message;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Vk extends Config
+class Vk extends Config implements ConfigInterface
 {
     use ActionConfig;
 

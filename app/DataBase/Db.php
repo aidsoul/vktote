@@ -20,10 +20,19 @@ class Db
      */
     protected function query():PDO
     {
-        $host = Conf::get()->host;
-        $dbName = Conf::get()->dbName;
+        if(!DB_COMMON){
+            $host   = Conf::get()->host;
+            $dbName = Conf::get()->dbName;
+            $user   = Conf::get()->user;
+            $pass   = Conf::get()->pass;
+        }else{
+            $host   = DB_HOST;
+            $dbName = DB_NAME;
+            $user   = DB_USER;
+            $pass   = DB_PASS;
+        }
         try {
-            return new PDO("{$host};dbname={$dbName}", Conf::get()->user, Conf::get()->pass);
+            return new PDO("{$host};dbname={$dbName}", $user, $pass);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
         }

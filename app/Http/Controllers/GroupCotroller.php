@@ -52,8 +52,6 @@ class GroupCotroller extends Controller implements UserInterface
             } else {
                 $groupFolder = PATH_GROUP_FOLDER.'/'.$groupName;
                 $fileIniPath = $groupFolder.'/'.GROUP_CONFIG;
-                $filePhpPath =  $groupFolder.'/'.GROUP_PHP;
-                
                 // Checking if there is a directory
                 if (is_dir($groupFolder)) {
                 // ini file

@@ -1,11 +1,25 @@
 <?php 
 
 /**
+ * 
+ * !!! Move to ini files
+ */
+
+/**
+ * MySQL
+ */
+define("DB_COMMON",false);
+define("DB_HOST","");
+define("DB_NAME","");
+define("DB_USER","");
+define("DB_PASS","");
+
+/**
  * Groups
  */
 define("PATH_GROUP_FOLDER","groups");
 define("GROUP_CONFIG","config.ini");
-define("GROUP_PHP","index.php");
+define("GROUP_START","start.php");
 
 /**
  * Messages

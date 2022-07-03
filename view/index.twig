@@ -15,6 +15,7 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">login</button>
 {% endif %}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form method="POST">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -26,17 +27,18 @@
         <p class="fw-light">Remember the entered password!</p>
       <div id="alert">
       </div>
-        <form method="POST">
+        
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Password:</label>
             <input rval type="password" id="password" class="form-control" id="recipient-name">
             <br>
               <button id="login" type="button" class="btn btn-primary">login</button>
           </div>
-        </form>
+ 
       </div>
     </div>
   </div>
+  </form>
 </div>
 {% endblock %}
 {% block script %}

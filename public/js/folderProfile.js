@@ -16,6 +16,7 @@ function del(name){
     $.ajax({
         method:"GET",
         url: '/settings/group/delete',
+        dataType:'json',
         data:{name:name},
         error: function(error){
             alert(0,error);
@@ -24,15 +25,13 @@ function del(name){
             $('#spinner-'+name).attr('class','spinner-border'); 
                 
         },
-        success: function(data){
+        success: function(ask){
+            console.log(ask);
             $('#spinner-'+name).attr('class','btn-close'); 
-            console.log(data);
+            // if(!ask.match(/[0-5]/s)){
+            //     alert(0,data);
+            // }
 
-            if(!data.match(/[0-5]/s)){
-                alert(0,data);
-            }
-            let ask = JSON.parse(data);
-            console.log(ask.status);
             if(ask.status == 1){  
                 window.location.replace('/settings');
             }
@@ -40,10 +39,10 @@ function del(name){
                 alert(0,'Folder'+ask.name+' not found');
             }
             if(ask.status == 2){  
-                alert(0,'Error, check the correctness of the database data in the config!');
+                alert(0,'Error, check the correctness of the database data in the config!<br>Enter the correct data to connect to the database or delete the folder manually.');
             }
             if(ask.status == 3){  
-                alert(0,'Error. Table "'+ask.name+'" in database not exist!');
+                alert(0,'Error. Table "'+ask.name+'" in database not exist!<br><b>To avoid data loss, delete the profile folder manually.</b>');
             }
             if(ask.status == 4){  
                 alert(0,'Error. File "'+ask.name+'" not exist!');

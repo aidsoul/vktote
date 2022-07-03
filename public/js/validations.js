@@ -21,12 +21,14 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     let count = document.querySelector('input[rnumb]');
-    count.addEventListener("input",function(e){
-        let item = e.target;
-        
-        item.value = item.value.replace(/[^0-9]/g,"");
-        if(item.value > 100){
-            item.value = 'Max count = 100';
-        }
-    });
+    if(count != null){
+        count.addEventListener("input",function(e){
+            let item = e.target;
+            item.value = item.value.replace(/[^0-9]/g,"");
+            if(item.value > 100){
+                item.value = 'Max count = 100';
+            }
+        });
+    }
+
 })

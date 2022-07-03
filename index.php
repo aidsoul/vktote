@@ -45,11 +45,6 @@ $router->map('POST', '/login', [Vktote\Http\Controllers\UserController::class,'l
 // Go to exit
 $router->map('POST','/exit',[Vktote\Http\Controllers\UserController::class,'exit']);
 
-
-/**
- * Blacklist
- */
-
 try{
     $response = $router->dispatch($request);
     // send the response to the browser

@@ -2,13 +2,15 @@
 
 namespace Vktote\Config;
 
+use Vktote\Config\ConfigInterface;
+
 /**
  * Db class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Db extends Config
+class Db extends Config implements ConfigInterface
 {
     use ActionConfig;
 

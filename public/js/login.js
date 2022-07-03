@@ -15,14 +15,12 @@ $( document ).ready(function() {
         
         }
         let send = $('#password');
-        console.log(send.val());
         $.ajax({
             method:'POST',
             url:'/login',
             dataType:'json',
             data:{password:send.val()},
             success:function(data){
-                console.log(data);
                 let status = data.status;
                 
                 if(status == 1){ 
