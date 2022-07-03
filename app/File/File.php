@@ -13,8 +13,6 @@ class File
     private string $configPath;
     private string $iniFile;
     private string $iniFullPath;
-    private string $phpPath;
-
     /**
      * Set function
      *
@@ -28,7 +26,6 @@ class File
             $this->configPath = $this->folder.'/'.GROUP_CONFIG;
             $this->iniFile = GROUP_CONFIG;
             $this->iniFullPath = $this->folder.'/'.GROUP_CONFIG;
-            $this->phpPath = $this->folder.'/'.GROUP_PHP;
         }
     }
 

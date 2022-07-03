@@ -24,7 +24,7 @@ class SettingsController extends Controller implements UserInterface
             $scDir = scandir(PATH_GROUP_FOLDER);
             $dir = [];
             foreach($scDir as $k=>$i){
-                if ($i == '.' || $i == '..' || $i == USER_CONFIG) {
+                if ($i == '.' || $i == '..' || $i == USER_CONFIG || $i == GROUP_START) {
                     continue;
                 }
                 $dir[] = $i;
@@ -49,8 +49,7 @@ class SettingsController extends Controller implements UserInterface
     {
         $this->response
         ->getBody()
-        ->write((new Group)
-        ->create());
+        ->write((new Group)->create());
         return $this->response;
     }
 

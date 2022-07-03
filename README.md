@@ -9,8 +9,9 @@ This is auto-posting from a VK group to a telegram channel.
 ## Installation
   
 You need:
- - apache ;
+ - apache2;
  - php 8.1;
+ - MySQL.
 
 To install, use the command: `git clone https://github.com/aidsoul/vktote`.
 Download the necessary libraries using the command: `composer install`.
@@ -20,15 +21,14 @@ Or use command `composer require aidsoul/vktote`.
 ## Connection example
 **All files for working with groups are located in the "groups" folder.**
 
-
 > In the "groups" folder, folder with the files listed below are added. All these files are needed for work. Come up with a name for the folder yourself. 
 
 The following example is a true profile group creation:
 ```
 groups
-[test]=>[config.ini,index.php]
-[test1]=>[config.ini,index.php]
-[...]=>[config.ini,index.php]
+[test]=>[config.ini]
+[test1]=>[config.ini]
+[test...]=>[config.ini]
 ```
 >If necessary, you can change the folder and the name of the files in the configuration file "**config.php**".
 
@@ -48,6 +48,8 @@ botApiKey="Bot API Key"
 botName="Bot name"
 chatId="Chat Id for send post"
 ```
+If there is a need to use a different database for each profile of the group you need to change the constant "DB_COMMON" in config.php by setting the value to "true". You should also add: DB_HOST, DB_NAME, DB_USER, DB_PASS.
+
 The executable file "**index.php**" should be like this:
 ```php
 <?php
@@ -76,10 +78,10 @@ Use crontab on your server or another task scheduler to get fresh posts without 
 
 Open and add a task to the task list: `crontab-e`.
 
-Get fresh entries every minute: `* * * * * php /patch for php file`.
+Get fresh entries every minute: `* * * * * php groups/start.php group_folder`.
 
-Example of the path to the profile of the "test" group:
+Below is an example of running a task for the "test" group profile. Test is specified as an argument.
 ```
-groups/test/index.php
+*/5 * * * * php groups/start.php test
 ```
 

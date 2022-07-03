@@ -2,7 +2,9 @@
 
 namespace Vktote\Config;
 
-class User extends Config
+use Vktote\Config\ConfigInterface;
+
+class User extends Config implements ConfigInterface
 {
     use ActionConfig;
     private string $password;

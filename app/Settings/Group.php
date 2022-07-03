@@ -22,13 +22,12 @@ class Group
      * @param string $pathPhp
      * @return void
      */
-    private function send(int $status, string $pathIni, string $pathPhp):array
+    private function send(int $status, string $pathIni):array
     {
         return [
             'status'=>$status,
             'file'=>$_POST['fileName'],
-            'pathIni' =>$pathIni,
-            'pathPhp' =>$pathPhp
+            'pathIni' =>$pathIni
             ];
     }
 
@@ -39,19 +38,18 @@ class Group
      */
     public function create():string
     {
-            $send = [];
-            $file = new File;
-            $file->set($_POST['fileName']);
+        $send = [];
+        $file = new File;
+        $file->set($_POST['fileName']);
 
         if (!is_dir($file->folder)) {
             mkdir($file->folder);
         }
         if (!file_exists($file->configPath)) {
             file_put_contents($file->configPath, include SETTINGS_PATTERN.'/PatternIni.php');
-            file_put_contents($file->phpPath, include SETTINGS_PATTERN.'/PatternPhp.php');
-            $send = $this->send(1, $file->configPath, $file->phpPath);
+            $send = $this->send(1, $file->configPath);
         } else {
-            $send = $this->send(0, $file->configPath, $file->phpPath);
+            $send = $this->send(0, $file->configPath);
         }
         return json_encode($send);
     }
@@ -79,12 +77,10 @@ class Group
     {
         $file = new File;
         $file->set($dirName);
-        $ret = ['status'=> 0,'name'=>$file->folder];
+        $ret = [];
         if (is_dir($file->folder)) {
-
+            //check if exist ini file
             $this->checkFileExist($file->configPath,4);
-            $this->checkFileExist($file->phpPath,5);
-
             try
             {
                 // delete group from database
@@ -99,9 +95,10 @@ class Group
                 die(json_encode(['status'=> 2]));
             }
             unlink($file->configPath);
-            unlink($file->phpPath);
             rmdir($file->folder);
             $ret = ['status'=> 1,'name'=> 0];
+        }else{
+            $ret = ['status'=> 0,'name'=>$file->folder];
         }
         return json_encode($ret);
     }
