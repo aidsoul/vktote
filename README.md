@@ -50,12 +50,6 @@ chatId="Chat Id for send post"
 ```
 If there is a need to use a different database for each profile of the group you need to change the constant "DB_COMMON" in config.php by setting the value to "true". You should also add: DB_HOST, DB_NAME, DB_USER, DB_PASS.
 
-The executable file "**index.php**" should be like this:
-```php
-<?php
-require_once  __DIR__  .  '/vendor/autoload.php';
-Vktote\Bot::start('config.ini');
-```
 ## Сontrol panel
 
 For the convenience of creating group profiles, use the control panel.
