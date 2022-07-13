@@ -54,13 +54,13 @@ class Api
         return json_decode($response->getBody(), true);
     }
 
-/**
- * Get request
- *
- * @return array
- */
+    /**
+     * Get request
+     *
+     * @return array
+     */
     public static function get():array
     {
-        return  self::add();
+        return self::add();
     }
 }

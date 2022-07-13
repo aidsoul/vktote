@@ -34,6 +34,7 @@
     <input rval type="text" class="form-control" name="fileName" send required>
 </div>
 <hr>
+{% if dbCommon != true %}
 <div class="mb-3">
     <h5>Database</h5>
 </div>
@@ -41,7 +42,7 @@
 <div class="mb-3">
     <label class="form-label">Host</label>
     <input rval type="text" class="form-control" name="host" send required>
-    <div class="form-text">Example: mysql:host=localhost</div>
+    <div class="form-text">Example: localhost</div>
 </div>
 <div class="mb-3">
     <label class="form-label">Database name</label>
@@ -56,6 +57,7 @@
     <input rval type="text" class="form-control" name="pass" send required>
 </div>
 <hr>
+{% endif %}
 <div class="mb-3">
         <h5>Vk</h5>
     </div>

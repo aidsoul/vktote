@@ -17,7 +17,7 @@ class Font extends Html
      * @param string $text
      * @return string
      */
-    public static function b(string $text):string
+    public static function b(string $text): string
     {
         return "<b>{$text}</b>";
     }

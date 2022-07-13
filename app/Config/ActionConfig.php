@@ -19,7 +19,7 @@ trait ActionConfig
      * @param string $property
      * @return string
      */
-    public function __get(string $property = ''):string
+    public function __get(string $property = ''): string
     { 
         try{
             $className = (new \ReflectionClass($this))->getShortName();

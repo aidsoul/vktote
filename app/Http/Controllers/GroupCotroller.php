@@ -24,7 +24,7 @@ class GroupCotroller extends Controller implements UserInterface
      * @param string $file
      * @return void
      */
-    private function checkExistFile(string $file):void
+    private function checkExistFile(string $file): void
     {
         if (file_exists($file)) {
             Bot::start($file);
@@ -41,7 +41,7 @@ class GroupCotroller extends Controller implements UserInterface
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function index(ServerRequestInterface $request):ResponseInterface
+    public function index(ServerRequestInterface $request): ResponseInterface
     {
         if (isset($request->getQueryParams()['name'])) {
             $groupName = $request->getQueryParams()['name'];
@@ -70,6 +70,7 @@ class GroupCotroller extends Controller implements UserInterface
             ->getBody()
             ->write(ERROR_404);
         }
+        
         return  $this->response;
     }
 }

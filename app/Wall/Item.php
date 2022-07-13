@@ -36,7 +36,7 @@ abstract class Item
      *
      * @return array
      */
-    public function get():array
+    public function get(): array
     {
         return $this->cleanAttach;
     }
@@ -46,7 +46,7 @@ abstract class Item
      *
      * @return string
      */
-    public function getText():string
+    public function getText(): string
     {
         return $this->text;
     }
@@ -57,7 +57,7 @@ abstract class Item
      * @param string $text
      * @return void
      */
-    public function setText(string $text):void
+    public function setText(string $text): void
     {
         $this->text = $text;
     }

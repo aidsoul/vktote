@@ -22,7 +22,7 @@ class Group
      * @param string $pathPhp
      * @return void
      */
-    private function send(int $status, string $pathIni):array
+    private function send(int $status, string $pathIni): array
     {
         return [
             'status'=>$status,
@@ -36,7 +36,7 @@ class Group
      *
      * @return void
      */
-    public function create():string
+    public function create(): string
     {
         $send = [];
         $file = new File;
@@ -51,6 +51,7 @@ class Group
         } else {
             $send = $this->send(0, $file->configPath);
         }
+
         return json_encode($send);
     }
 
@@ -73,7 +74,7 @@ class Group
      * @param string $dirDelete
      * @return array
      */
-    public function delete(string $dirName):string
+    public function delete(string $dirName): string
     {
         $file = new File;
         $file->set($dirName);
@@ -100,6 +101,7 @@ class Group
         }else{
             $ret = ['status'=> 0,'name'=>$file->folder];
         }
+
         return json_encode($ret);
     }
 }

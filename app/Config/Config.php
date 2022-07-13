@@ -20,7 +20,7 @@ class Config
      * @var array
      * @return void
    */
-    public static function set(string $сonfigPath):void
+    public static function set(string $сonfigPath): void
     {
         self::$config = parse_ini_file($сonfigPath, true);
     }
