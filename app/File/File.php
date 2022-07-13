@@ -19,7 +19,7 @@ class File
      * @param string $data $_POST or $_GET
      * @return void
      */
-    public function set(string $data):void
+    public function set(string $data): void
     {
         if (!empty($data)) {
             $this->folder = PATH_GROUP_FOLDER.'/'.$data;

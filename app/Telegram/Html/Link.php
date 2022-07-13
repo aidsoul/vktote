@@ -16,12 +16,14 @@ class Link extends Html
      *
      * @param string $link
      * @param string $linkName
+     * 
      * @return string
      */
-    public static function a(string $link, string $linkName = ''):string
+    public static function a(string $link, string $linkName = ''): string
     {
         $aStart = '<a href="';
         $aEnd = '">'.$linkName.'</a>';
+        
         return $aStart.$link.$aEnd;
     }
 }

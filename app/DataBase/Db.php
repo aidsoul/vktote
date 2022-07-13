@@ -18,7 +18,7 @@ class Db
      *
      * @return \PDO
      */
-    protected function query():PDO
+    protected function query(): PDO
     {
         if(!DB_COMMON){
             $host   = Conf::get()->host;
@@ -32,7 +32,7 @@ class Db
             $pass   = DB_PASS;
         }
         try {
-            return new PDO("{$host};dbname={$dbName}", $user, $pass);
+            return new PDO("mysql:host={$host};dbname={$dbName}", $user, $pass);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
         }

@@ -44,7 +44,7 @@ class Controller
      *
      * @return void
      */
-    protected function role():void
+    protected function role(): void
     {
         if ($this->access !== true) {
             exit(ERROR_404);
@@ -58,7 +58,7 @@ class Controller
      * @param array $context
      * @return void
      */
-    protected function writePage(string $page, array $context = []):void
+    protected function writePage(string $page, array $context = []): void
     {
         $this->response
         ->getBody()
@@ -72,7 +72,7 @@ class Controller
      * @param array $context
      * @return string
      */
-    private function render(string $page, array $context = []):string
+    private function render(string $page, array $context = []): string
     {
         $loader = new FilesystemLoader('view');
         $view = new Environment($loader);

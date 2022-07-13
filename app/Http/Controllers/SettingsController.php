@@ -36,7 +36,7 @@ class SettingsController extends Controller implements UserInterface
 
     public function groupAdd():ResponseInterface
     {
-        $this->writePage('settings/group-add.twig');
+        $this->writePage('settings/group-add.twig',['dbCommon'=>DB_COMMON]);
         return $this->response;
     }
 

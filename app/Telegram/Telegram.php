@@ -57,7 +57,7 @@ class Telegram
      *
      * @return integer
      */
-    private function checkIfExistGroup():int
+    private function checkIfExistGroup(): int
     {
         $vkGroup = new Vkgroup;
         $groupName = V::get()->idGroup;
@@ -66,6 +66,7 @@ class Telegram
             $vkGroup->create($groupName);
             $getVkGroup = $vkGroup->check($groupName);
         }
+
         return $getVkGroup;
     }
 
@@ -74,7 +75,7 @@ class Telegram
      *
      * @return bool
      */
-    private function checkIfExistPost(int $postId):bool
+    private function checkIfExistPost(int $postId): bool
     {
         $status = false;
         $groupId = $this->checkIfExistGroup();
@@ -83,6 +84,7 @@ class Telegram
             $post->create($postId, $groupId);
             $status = true;
         }
+
         return $status;
     }
 
@@ -92,7 +94,7 @@ class Telegram
      * @param array $data
      * @return void
      */
-    public function send(array $data):void
+    public function send(array $data): void
     {
         foreach ($data as $k => $v) {
             if ($this->checkIfExistPost($k)) {
@@ -158,7 +160,7 @@ class Telegram
      *
      * @return void
      */
-    private function author():void
+    private function author(): void
     {
         $link = 'https://vk.com/id';
         $this->text .= "\r\n".Link::a($link.$this->author, '👤'.parse_url($link)['host']);
@@ -169,7 +171,7 @@ class Telegram
      *
      * @return void
      */
-    private function link():void
+    private function link(): void
     {
         $message = Font::b($this->text."\r\n");
         $message .= $this->link['title']."\r\n";
@@ -196,7 +198,7 @@ class Telegram
      *
      * @return void
      */
-    private function media():void
+    private function media(): void
     {
         $this->media[0]["caption"] = $this->text;
         $this->text = '';

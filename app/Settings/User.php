@@ -18,7 +18,6 @@ class User
 
     public function __construct()
     {
-
         if (file_exists($this->path)) {
             Config::set($this->path);
         } else {
@@ -35,7 +34,7 @@ class User
      *
      * @return boolean
      */
-    public function existUser():bool
+    public function existUser(): bool
     {
         $send = false;
         if (isset($_SESSION['user'])) {
@@ -45,30 +44,32 @@ class User
                 $this->exitUser();
             }
         }
+
         return $send;
     }
 
     /**
      * Log out of the user account
      *
-     * @return void
+     * @return int
      */
-    public function exitUser():int
+    public function exitUser(): int
     {
         $status = 0;
         if (isset($_SESSION['user'])) {
             unset($_SESSION['user']);
             $status = 1;
         }
+
         return $status;
     }
 
     /**
      * User authorization by session means
      *
-     * @return void
+     * @return array
      */
-    private function login():array
+    private function login(): array
     {
         $_SESSION['user'] = $this->password;
         return ['status' => 1];
@@ -77,9 +78,9 @@ class User
     /**
      * checkIfExist function
      *
-     * @return array
+     * @return string
      */
-    public function checkIfExist():string
+    public function checkIfExist(): string
     {
         $status = ['status' => 0];
         $this->existUser();
@@ -120,6 +121,7 @@ class User
                 $status = ['status'=> 5];
             }
         }
+
         return json_encode($status);
     }
 
@@ -130,7 +132,7 @@ class User
      * @param string $password
      * @return void
      */
-    private function create(string $filePath, string $password = ''):void
+    private function create(string $filePath, string $password = ''): void
     {
         $password = $this->password ?? '';
         file_put_contents($filePath, include SETTINGS_PATTERN.'/PatterUser.php');

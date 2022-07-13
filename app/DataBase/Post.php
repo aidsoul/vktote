@@ -29,7 +29,7 @@ class Post extends Db
      * @param integer $groupId
      * @return void
      */
-    public function create(int $postId, int $groupId):void
+    public function create(int $postId, int $groupId): void
     {
         $query = "INSERT INTO {$this->tableName} VALUES (?,?)";
         $stmt = $this->query()->prepare($query);
@@ -49,6 +49,7 @@ class Post extends Db
         $query = $this->query()->prepare($query);
         $query->execute([$postId,$groupId]);
         $ask = $query->fetch();
+        
         return  $ask ? $ask[$this->idPost]: false;
     }
 

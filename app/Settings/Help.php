@@ -15,7 +15,7 @@ class Help
      * @param object $obj
      * @return void
      */
-    public static function getShortName(object $obj):string
+    public static function getShortName(object $obj): string
     {
         return (new \ReflectionClass($obj))->getShortName();
     }
@@ -26,7 +26,7 @@ class Help
      * @param string $header
      * @return void
      */
-    public static function addHeader(string $header):string
+    public static function addHeader(string $header): string
     {
         return "[{$header}]\n";
     }

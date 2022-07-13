@@ -35,7 +35,7 @@ groups
 Configuration file "**config.ini** " should look like this:
 ```ini
 [Db]
-host="mysql:host=localhost"
+host="localhost"
 dbName="vk"
 user="root"
 pass=""

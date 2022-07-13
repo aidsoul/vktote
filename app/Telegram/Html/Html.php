@@ -16,7 +16,7 @@ abstract class Html
      *
      * @return static
      */
-    public static function get():static
+    public static function get(): static
     {
         return new static;
     }
