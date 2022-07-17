@@ -22,10 +22,10 @@ class File
     public function set(string $data): void
     {
         if (!empty($data)) {
-            $this->folder = PATH_GROUP_FOLDER.'/'.$data;
-            $this->configPath = $this->folder.'/'.GROUP_CONFIG;
+            $this->folder = PATH_GROUP_FOLDER . '/' . $data;
+            $this->configPath = $this->folder . '/' . GROUP_CONFIG;
             $this->iniFile = GROUP_CONFIG;
-            $this->iniFullPath = $this->folder.'/'.GROUP_CONFIG;
+            $this->iniFullPath = $this->folder . '/' . GROUP_CONFIG;
         }
     }
 

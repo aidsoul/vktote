@@ -6,7 +6,7 @@ use PDO;
 use Vktote\Config\Db as Conf;
 
 /**
- * Db class
+ * A class for working with the database
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
@@ -20,12 +20,12 @@ class Db
      */
     protected function query(): PDO
     {
-        if(!DB_COMMON){
+        if (!DB_COMMON) {
             $host   = Conf::get()->host;
             $dbName = Conf::get()->dbName;
             $user   = Conf::get()->user;
             $pass   = Conf::get()->pass;
-        }else{
+        } else {
             $host   = DB_HOST;
             $dbName = DB_NAME;
             $user   = DB_USER;

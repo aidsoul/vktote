@@ -7,11 +7,11 @@ namespace Vktote\Http\Controllers;
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  */
-trait UserRoleTrait{
+trait UserRoleTrait
+{
     public function __construct()
     {
         parent::__construct();
         $this->role();
     }
-
 }

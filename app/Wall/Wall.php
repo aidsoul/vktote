@@ -35,14 +35,14 @@ class Wall
      * @var integer
      */
     private int $author;
-    
+
 
     /**
      * Get Wall function
      *
      * @return void
      */
-    private function getWall():Generator
+    private function getWall(): Generator
     {
         $wall = (new VkApi(
             V::get()->token,
@@ -61,21 +61,21 @@ class Wall
      * @param array $copyHistoryData
      * @return void
      */
-    private function copyHistory(array $copyHistoryData):void
+    private function copyHistory(array $copyHistoryData): void
     {
         foreach ($copyHistoryData as $copyV) {
             $this->text .= $copyV['text'];
             $this->middleBodyWall($copyV);
         }
     }
-    
+
     /**
      * Midle body wall function
      *
      * @param array $attach
      * @return void
      */
-    private function middleBodyWall(array $attach):void
+    private function middleBodyWall(array $attach): void
     {
         if (isset($attach['signer_id'])) {
             $this->author = $attach['signer_id'];
@@ -85,10 +85,10 @@ class Wall
         $this->item = new Attachment($this->id, $this->text, $this->author);
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
-                $this->item->set($valueAttach);
+                $this->item->add($valueAttach);
             }
         }
-            (new Telegram)->send($this->item->get());
+        (new Telegram)->send($this->item->get());
     }
 
     /**
@@ -96,11 +96,11 @@ class Wall
      *
      * @return void
      */
-    public function collectAndPush():void
+    public function collectAndPush(): void
     {
         foreach ($this->getWall() as $wallV) {
             $this->id = $wallV['id'];
-            $this->text = $wallV['text']."\r\n";
+            $this->text = $wallV['text'] . "\r\n";
             if (isset($wallV['copy_history'])) {
                 $this->copyHistory($wallV['copy_history']);
             } else {

@@ -13,30 +13,31 @@ use Vktote\Settings\Group;
  * SettingsController
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
+ * @license MIT
  */
 class SettingsController extends Controller implements UserInterface
 {
     use UserRoleTrait;
 
-    public function index():ResponseInterface
+    public function index(): ResponseInterface
     {
-        if(is_dir(PATH_GROUP_FOLDER)){
+        if (is_dir(PATH_GROUP_FOLDER)) {
             $scDir = scandir(PATH_GROUP_FOLDER);
             $dir = [];
-            foreach($scDir as $k=>$i){
+            foreach ($scDir as $k => $i) {
                 if ($i == '.' || $i == '..' || $i == USER_CONFIG || $i == GROUP_START) {
                     continue;
                 }
                 $dir[] = $i;
             }
         }
-        $this->writePage('settings/index.twig',compact('dir'));
+        $this->writePage('settings/index.twig', compact('dir'));
         return $this->response;
     }
 
-    public function groupAdd():ResponseInterface
+    public function groupAdd(): ResponseInterface
     {
-        $this->writePage('settings/group-add.twig',['dbCommon'=>DB_COMMON]);
+        $this->writePage('settings/group-add.twig', ['dbCommon' => DB_COMMON]);
         return $this->response;
     }
 
@@ -45,11 +46,11 @@ class SettingsController extends Controller implements UserInterface
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function groupAddRequest():ResponseInterface
+    public function groupAddRequest(): ResponseInterface
     {
         $this->response
-        ->getBody()
-        ->write((new Group)->create());
+            ->getBody()
+            ->write((new Group)->create());
         return $this->response;
     }
 
@@ -59,14 +60,12 @@ class SettingsController extends Controller implements UserInterface
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function deleteFolderProfile(ServerRequestInterface $request):ResponseInterface
+    public function deleteFolderProfile(ServerRequestInterface $request): ResponseInterface
     {
         $ask = (new Group)->delete($request->getQueryParams()['name']);
         $this->response
-        ->getBody()
-        ->write($ask);
+            ->getBody()
+            ->write($ask);
         return $this->response;
     }
-    
 }
-

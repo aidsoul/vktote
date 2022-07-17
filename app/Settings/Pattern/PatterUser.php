@@ -1,3 +1,3 @@
 <?php 
 return '[User]
-password = "'.$password.'"';
+password = "' . $password . '"';

@@ -1,13 +1,16 @@
 <?php
 namespace Vktote\Wall\Attachment;
 
+use Vktote\Wall\Attachment\AttachmentInterface;
+
 /**
  * Link class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
+ * 
  */
-class Link extends Attachment
+class Link extends Attachment implements AttachmentInterface
 {
 
     /**
@@ -42,7 +45,7 @@ class Link extends Attachment
      *
      * @return array
      */
-    public function get():array
+    public function get(): array
     {
         return[
             'url' => $this->url,

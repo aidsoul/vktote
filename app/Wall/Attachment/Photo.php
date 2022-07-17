@@ -2,13 +2,15 @@
 
 namespace Vktote\Wall\Attachment;
 
+use Vktote\Wall\Attachment\AttachmentInterface;
+
 /**
  * Photo class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Photo extends Attachment
+class Photo extends Attachment implements AttachmentInterface
 {
 
     /**
@@ -27,7 +29,7 @@ class Photo extends Attachment
      *
      * @return string
      */
-    private function getBestSizeImage():string
+    private function getBestSizeImage(): string
     {
         return array_pop($this->photo['sizes'])['url'];
     }
@@ -37,13 +39,13 @@ class Photo extends Attachment
      *
      * @return array
      */
-    public function get():array
+    public function get(): array
     {
         return [
-                'type' => 'photo',
-                'caption'=> $this->photo['text'],
-                'media'=>$this->getBestSizeImage(),
-                "parse_mode"=>"html"
+            'type' => 'photo',
+            'caption' => $this->photo['text'],
+            'media' => $this->getBestSizeImage(),
+            "parse_mode" => "html"
         ];
     }
 }

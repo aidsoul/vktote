@@ -9,7 +9,6 @@ namespace Vktote\DataBase;
  */
 class Post extends Db
 {
-
     use Help;
 
     /**
@@ -33,7 +32,7 @@ class Post extends Db
     {
         $query = "INSERT INTO {$this->tableName} VALUES (?,?)";
         $stmt = $this->query()->prepare($query);
-        $stmt->execute([$postId,$groupId]);
+        $stmt->execute([$postId, $groupId]);
     }
 
     /**
@@ -47,10 +46,9 @@ class Post extends Db
     {
         $query = "SELECT {$this->idPost} FROM {$this->tableName} WHERE {$this->idPost} = ? AND {$this->groupId} = ? LIMIT 1";
         $query = $this->query()->prepare($query);
-        $query->execute([$postId,$groupId]);
+        $query->execute([$postId, $groupId]);
         $ask = $query->fetch();
-        
-        return  $ask ? $ask[$this->idPost]: false;
-    }
 
+        return  $ask ? $ask[$this->idPost] : false;
+    }
 }
