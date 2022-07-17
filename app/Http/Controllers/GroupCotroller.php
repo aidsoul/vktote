@@ -13,6 +13,7 @@ use Vktote\Http\Controllers\UserRoleTrait;
  * GroupCotroller class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
+ * @license MIT
  */
 class GroupCotroller extends Controller implements UserInterface
 {
@@ -30,8 +31,8 @@ class GroupCotroller extends Controller implements UserInterface
             Bot::start($file);
         } else {
             $this->response
-            ->getBody()
-            ->write('The file has not been created or it does not exist: '.$file.'<br>');
+                ->getBody()
+                ->write('The file has not been created or it does not exist: ' . $file . '<br>');
         }
     }
 
@@ -47,30 +48,30 @@ class GroupCotroller extends Controller implements UserInterface
             $groupName = $request->getQueryParams()['name'];
             if (empty($groupName)) {
                 $this->response
-                ->getBody()
-                ->write('Query param is null');
+                    ->getBody()
+                    ->write('Query param is null');
             } else {
-                $groupFolder = PATH_GROUP_FOLDER.'/'.$groupName;
-                $fileIniPath = $groupFolder.'/'.GROUP_CONFIG;
+                $groupFolder = PATH_GROUP_FOLDER . '/' . $groupName;
+                $fileIniPath = $groupFolder . '/' . GROUP_CONFIG;
                 // Checking if there is a directory
                 if (is_dir($groupFolder)) {
-                // ini file
+                    // ini file
                     $this->checkExistFile($fileIniPath);
-                // // php file
-                // $this->checkExistFile($filePhpPath);
+                    // // php file
+                    // $this->checkExistFile($filePhpPath);
                 } else {
                     $this->response
-                    ->getBody()
-                    ->write('Folder not found');
+                        ->getBody()
+                        ->write('Folder not found');
                 }
             }
-        //Group not found
+            //Group not found
         } else {
             $this->response
-            ->getBody()
-            ->write(ERROR_404);
+                ->getBody()
+                ->write(ERROR_404);
         }
-        
+
         return  $this->response;
     }
 }

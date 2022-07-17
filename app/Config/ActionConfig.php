@@ -15,7 +15,8 @@ use Vktote\Message\Message;
 trait ActionConfig
 {
     /**
-     *
+     * Retrieving closed class properties and error handling 
+     * 
      * @param string $property
      * @return string
      */
@@ -58,13 +59,4 @@ trait ActionConfig
         }
     }
 
-    /**
-     * Get function
-     *
-     * @return static
-     */
-    public static function get():static
-    {
-        return new static();
-    }
 }

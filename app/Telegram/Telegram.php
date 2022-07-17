@@ -111,7 +111,7 @@ class Telegram
                     foreach ($linkArr as $linkItm) {
                         foreach ($linkItm as $k => $link) {
                             $k++;
-                            $this->text = preg_replace("~{$link}~", Link::a($link, '🔗'.parse_url($link)['host']), $this->text);
+                            $this->text = preg_replace("~{$link}~", Link::a($link, '🔗' . parse_url($link)['host']), $this->text);
                         }
                     }
                 }
@@ -163,7 +163,7 @@ class Telegram
     private function author(): void
     {
         $link = 'https://vk.com/id';
-        $this->text .= "\r\n".Link::a($link.$this->author, '👤'.parse_url($link)['host']);
+        $this->text .= "\r\n" . Link::a($link.$this->author, '👤' . parse_url($link)['host']);
     }
 
     /**
@@ -181,7 +181,7 @@ class Telegram
             if (strpos($this->link['description'], $symbol)) {
                 $link = str_replace($symbol, Link::a($this->link['url'], $nextStr), $this->link['description']);
             } else {
-                $link = $this->link['description']." ".Link::a($this->link['url'], $nextStr);
+                $link = $this->link['description'] ." ". Link::a($this->link['url'], $nextStr);
             }
         
             $message .= "{$link}\r\n";

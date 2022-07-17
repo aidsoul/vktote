@@ -24,7 +24,7 @@ class Attachment extends Item
     private array $attachment;
 
     /**
-     * __construct function
+     * Construct function
      *
      * @param integer $id
      * @param string $text
@@ -45,7 +45,7 @@ class Attachment extends Item
      * @param array $attachment
      * @return void
      */
-    public function set(array $attachment): void
+    public function add(array $attachment): void
     {
         $this->attachment = $attachment;
         $type = $attachment['type'];

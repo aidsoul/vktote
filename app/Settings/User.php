@@ -135,6 +135,6 @@ class User
     private function create(string $filePath, string $password = ''): void
     {
         $password = $this->password ?? '';
-        file_put_contents($filePath, include SETTINGS_PATTERN.'/PatterUser.php');
+        file_put_contents($filePath, include SETTINGS_PATTERN . '/PatterUser.php');
     }
 }

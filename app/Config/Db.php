@@ -5,7 +5,7 @@ namespace Vktote\Config;
 use Vktote\Config\ConfigInterface;
 
 /**
- * Db class
+ * Getting database configuration
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT

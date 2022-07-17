@@ -46,7 +46,7 @@ class Group
             mkdir($file->folder);
         }
         if (!file_exists($file->configPath)) {
-            file_put_contents($file->configPath, include SETTINGS_PATTERN.'/PatternIni.php');
+            file_put_contents($file->configPath, include SETTINGS_PATTERN . '/PatternIni.php');
             $send = $this->send(1, $file->configPath);
         } else {
             $send = $this->send(0, $file->configPath);

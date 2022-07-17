@@ -5,7 +5,7 @@ namespace Vktote\Config;
 use Vktote\Config\ConfigInterface;
 
 /**
- * Telegram class
+ * Getting telegram configuration
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
