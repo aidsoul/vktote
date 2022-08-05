@@ -50,10 +50,10 @@ class Message
         string $className,
         string $messageName,
         string $messageAdd = ''
-    ):void {
+    ): void {
         if (class_exists($className) or trait_exists($className)) {
             $message = $this->messageArr[$className = (new \ReflectionClass($className))
-            ->getShortName()][$messageName] . ' ' . $messageAdd;
+                ->getShortName()][$messageName] . ' ' . $messageAdd;
             if ($type === false) {
                 exit($message);
             } elseif ($type === true) {
@@ -67,7 +67,7 @@ class Message
      *
      * @return Message
      */
-    public static function find():Message
+    public static function find(): Message
     {
         return new static();
     }

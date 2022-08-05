@@ -22,7 +22,7 @@ class Link extends Html
     public static function a(string $link, string $linkName = ''): string
     {
         $aStart = '<a href="';
-        $aEnd = '">' . $linkName . '</a>';
+        $aEnd = '">'.$linkName.'</a>';
         
         return $aStart.$link.$aEnd;
     }

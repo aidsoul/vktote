@@ -13,31 +13,47 @@ use Vktote\Settings\Group;
  * SettingsController
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
- * @license MIT
  */
 class SettingsController extends Controller implements UserInterface
 {
     use UserRoleTrait;
 
+    /**
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function index(): ResponseInterface
     {
         if (is_dir(PATH_GROUP_FOLDER)) {
             $scDir = scandir(PATH_GROUP_FOLDER);
             $dir = [];
             foreach ($scDir as $k => $i) {
-                if ($i == '.' || $i == '..' || $i == USER_CONFIG || $i == GROUP_START) {
+                if (
+                    $i == '.' || 
+                    $i == '..' || 
+                    $i == USER_CONFIG || 
+                    $i == GROUP_START ||
+                    is_file($i)
+                ) {
+                    if (is_file($i)) {
+                        continue;
+                    }
                     continue;
                 }
                 $dir[] = $i;
             }
         }
         $this->writePage('settings/index.twig', compact('dir'));
+
         return $this->response;
     }
 
+    /**
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function groupAdd(): ResponseInterface
     {
         $this->writePage('settings/group-add.twig', ['dbCommon' => DB_COMMON]);
+
         return $this->response;
     }
 

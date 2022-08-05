@@ -2,23 +2,21 @@
 
 namespace Vktote\DataBase;
 
-use PDO;
+use Aidsoul\Pdo\Db;
 use Vktote\Config\Db as Conf;
 
 /**
- * A class for working with the database
+ * Db function
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Db
+abstract class Database
 {
-    /**
-     * Query function
-     *
-     * @return \PDO
-     */
-    protected function query(): PDO
+
+    protected static Db $pdo;
+
+    public function __construct()
     {
         if (!DB_COMMON) {
             $host   = Conf::get()->host;
@@ -32,9 +30,14 @@ class Db
             $pass   = DB_PASS;
         }
         try {
-            return new PDO("mysql:host={$host};dbname={$dbName}", $user, $pass);
+            self::$pdo = new Db("mysql:host={$host};dbname={$dbName}", $user, $pass);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
         }
+    }
+
+    public function pdo(): Db
+    {
+        return self::$pdo;
     }
 }
