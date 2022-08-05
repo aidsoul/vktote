@@ -4,7 +4,7 @@ namespace Vktote\Settings;
 
 use Vktote\Config\Config;
 use Vktote\Config\Vk;
-use Vktote\DataBase\Vkgroup;
+use Vktote\DataBase\Models\Vkgroup;
 use Vktote\File\File;
 
 /**
@@ -88,7 +88,7 @@ class Group
                 Config::set($file->iniFullPath);
                 $vk = new Vkgroup;
                 if($idGroup = $vk->check(Vk::get()->idGroup)){
-                    $vk->delete($idGroup);
+                    $vk->remove($idGroup);
                 }else{
                     die(json_encode(['status'=> 3,'name'=>Vk::get()->idGroup]));
                 }

@@ -61,8 +61,8 @@ class Controller
     protected function writePage(string $page, array $context = []): void
     {
         $this->response
-        ->getBody()
-        ->write($this->render($page, $context));
+            ->getBody()
+            ->write($this->render($page, $context));
     }
 
     /**

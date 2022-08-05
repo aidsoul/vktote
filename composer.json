@@ -1,6 +1,7 @@
 {
     "name": "aidsoul/vktote",
     "license": "MIT",
+    "optimize-autoloader": true,
     "autoload": {
         "psr-4": {
             "Vktote\\": "app"
@@ -9,7 +10,8 @@
     "authors": [
         {
             "name": "aidsoul",
-            "email": "work-aidsoul@outlook.com"
+            "email": "work-aidsoul@outlook.com",
+            "homepage": "https://github.com/aidsoul"
         }
     ],
     "require": {
@@ -19,6 +21,7 @@
         "league/route": "^5.1",
         "laminas/laminas-diactoros": "^2.11",
         "laminas/laminas-httphandlerrunner": "^2.1",
-        "league/container": "^4.2"
+        "league/container": "^4.2",
+        "aidsoul/pdo": "^1.0"
         }
 }

@@ -19,7 +19,7 @@ class Help
     {
         return (new \ReflectionClass($obj))->getShortName();
     }
-    
+
     /**
      * addHeader function
      *

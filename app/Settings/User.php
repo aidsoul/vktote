@@ -12,9 +12,9 @@ use Vktote\Config\User as U;
  */
 class User
 {
-    
+
     private string $password;
-    private string $path = PATH_GROUP_FOLDER.'/'.USER_CONFIG;
+    private string $path = PATH_GROUP_FOLDER . '/' . USER_CONFIG;
 
     public function __construct()
     {
@@ -86,12 +86,12 @@ class User
         $this->existUser();
         if (!isset($_SESSION['user'])) {
             if (isset($_POST['password'])) {
-                $this->password = md5(USER_ACCESS_KEY.$_POST['password']);
+                $this->password = md5(USER_ACCESS_KEY . $_POST['password']);
                 if (file_exists($this->path)) {
-                     // Ok
+                    // Ok
                     $pass = U::get()->password;
                     //create password
-                    if ($pass === "none") {
+                    if ($pass === '1') {
                         $this->create($this->path);
                         $status = $this->login();
                     } else {
@@ -106,7 +106,7 @@ class User
                             }
                         }
                     }
-                //Create password
+                    //Create password
                 } else {
                     $this->create($this->path);
                     $status = $this->login();
@@ -116,9 +116,9 @@ class User
             }
         } else {
             if ($_SESSION['user'] == U::get()->password) {
-                $status = ['status'=> 4];
+                $status = ['status' => 4];
             } else {
-                $status = ['status'=> 5];
+                $status = ['status' => 5];
             }
         }
 
@@ -135,6 +135,6 @@ class User
     private function create(string $filePath, string $password = ''): void
     {
         $password = $this->password ?? '';
-        file_put_contents($filePath, include SETTINGS_PATTERN.'/PatterUser.php');
+        file_put_contents($filePath, include SETTINGS_PATTERN . '/PatterUser.php');
     }
 }

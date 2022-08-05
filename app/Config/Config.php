@@ -10,18 +10,18 @@ namespace Vktote\Config;
  */
 class Config
 {
-   /**
-    *
-    * @var array
-    */
-    protected static array $config;
-
-   /**
-     * @var array
-     * @return void
+  /**
+   *
+   * @var array
    */
-    public static function set(string $сonfigPath): void
-    {
-        self::$config = parse_ini_file($сonfigPath, true);
-    }
+  protected static array $config;
+
+  /**
+   * @var array
+   * @return void
+   */
+  public static function set(string $сonfigPath): void
+  {
+    self::$config = parse_ini_file($сonfigPath, true);
+  }
 }

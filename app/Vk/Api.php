@@ -16,7 +16,7 @@ class Api
   /**
    * @var string $token Token id
    */
-    private static $token = 'You access token';
+    private static string $token;
 
   /**
    * @var int $idGroup Id group for parser
@@ -45,7 +45,7 @@ class Api
    *
    * @return array
    */
-    protected static function add():array
+    protected static function add(): array
     {
         $link = "https://api.vk.com/method/wall.get?access_token=";
         $send = $link.self::$token."&v=5.131&domain=".self::$idGroup."&count=".self::$count."";
@@ -59,7 +59,7 @@ class Api
      *
      * @return array
      */
-    public static function get():array
+    public static function get(): array
     {
         return self::add();
     }

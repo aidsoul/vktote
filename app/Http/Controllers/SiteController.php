@@ -11,14 +11,13 @@ use Vktote\Http\Controllers\Controller;
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  */
-class SiteController extends Controller 
+class SiteController extends Controller
 {
     public function index(ServerRequestInterface $request): ResponseInterface
     {
         $user = $this->user->existUser();
-        $this->writePage('index.twig',compact('user'));
+        $this->writePage('index.twig', compact('user'));
 
         return $this->response;
     }
-
 }

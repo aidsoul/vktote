@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Vktote\Http\Controllers;
 
