@@ -1,31 +1,29 @@
 <?php
-namespace Vktote\Wall\Attachment;
 
-use Vktote\Wall\Attachment\AttachmentInterface;
+namespace Vktote\Wall\Attachment;
 
 /**
  * Link class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
- * 
  */
-class Link extends Attachment implements AttachmentInterface
+class Link extends Attachment implements LinkInterface
 {
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private string $url;
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private string $title;
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private string $description;
 
     /**
@@ -47,7 +45,7 @@ class Link extends Attachment implements AttachmentInterface
      */
     public function get(): array
     {
-        return[
+        return [
             'url' => $this->url,
             'title' => $this->title,
             'description' => $this->description

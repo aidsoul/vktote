@@ -10,7 +10,6 @@ use Vktote\Http\Controllers\Controller;
  * SiteController class
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
- * @license MIT
  */
 class SiteController extends Controller
 {

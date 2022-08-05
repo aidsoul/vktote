@@ -6,7 +6,7 @@ use Vktote\Message\Message;
 use Vktote\Config\ConfigInterface;
 
 /**
- * Getting vk configuration
+ * Vk class
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT

@@ -13,7 +13,6 @@ use Vktote\Http\Controllers\UserRoleTrait;
  * GroupCotroller class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
- * @license MIT
  */
 class GroupCotroller extends Controller implements UserInterface
 {

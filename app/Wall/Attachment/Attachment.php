@@ -2,7 +2,6 @@
 
 namespace Vktote\Wall\Attachment;
 
-use Vktote\Wall\Item;
 
 /**
  * Attachment class
@@ -10,13 +9,8 @@ use Vktote\Wall\Item;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Attachment extends Item
+class Attachment implements AttachmentInterface
 {
-
-    /**
-     * @var array
-     */
-    private array $media;
 
     /**
      * @var array
@@ -24,20 +18,9 @@ class Attachment extends Item
     private array $attachment;
 
     /**
-     * Construct function
-     *
-     * @param integer $id
-     * @param string $text
-     * @param integer $author
+     * @var array
      */
-    public function __construct(int $id, string $text, int $author)
-    {
-        $this->id = $id;
-        $this->text = $text;
-        $this->author = $author;
-        $this->cleanAttach[$id] = ['text' => $text];
-        $this->cleanAttach[$id]['author'] =  $author;
-    }
+    private array $cleanAttach = [];
 
     /**
      * Set function
@@ -45,15 +28,10 @@ class Attachment extends Item
      * @param array $attachment
      * @return void
      */
-    public function add(array $attachment): void
+    public function set(array $attachment): void
     {
         $this->attachment = $attachment;
         $type = $attachment['type'];
-
-        //delete post if exist type = 'video'
-        if ($type === 'video') {
-            unset($this->cleanAttach[$this->id]);
-        }
         if (method_exists($this, $type)) {
             $this->$type();
         }
@@ -66,12 +44,13 @@ class Attachment extends Item
      */
     private function photo(): void
     {
-        $this->cleanAttach[$this->id]['media'][] = (new Photo($this->attachment[__FUNCTION__]))->get();
+        $this->cleanAttach['media'][] = (new Photo($this->attachment[__FUNCTION__]))->get();
     }
 
     /**
      * Video function
      *
+     * !! Add Late
      * Turn on if it is ready
      *
      * @return void
@@ -87,16 +66,17 @@ class Attachment extends Item
      */
     private function link(): void
     {
-        $this->cleanAttach[$this->id]['link'][] = (new Link($this->attachment[__FUNCTION__]))->get();
+        $this->cleanAttach['link'][] = (new Link($this->attachment[__FUNCTION__]))->get();
     }
 
     /**
-     * Get media function
+     * Get function
      *
      * @return array
      */
-    public function getMedia(): array
+    public function get(): array
     {
-        return $this->media;
+        return $this->cleanAttach;
     }
+
 }

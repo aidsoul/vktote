@@ -2,12 +2,19 @@
 
 namespace Vktote\Wall\Attachment;
 
-/**
- * Interface for attachment
- * 
- * @author aidsoul <work-aidsoul@outlook.com>
- */
 interface AttachmentInterface
 {
+
+    /**
+     * Initializing an array of attachments
+     *
+     * @param array $attachment
+     */
+    public function set(array $attachment);
+
+    /**
+     * @return array
+     */
     public function get(): array;
+
 }

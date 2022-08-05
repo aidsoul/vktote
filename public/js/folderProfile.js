@@ -36,7 +36,7 @@ function del(name){
                 window.location.replace('/settings');
             }
             if(ask.status == 0){  
-                alert(0,'Folder'+ask.name+' not found');
+                alert(0,'Folder '+ask.name+' not found');
             }
             if(ask.status == 2){  
                 alert(0,'Error, check the correctness of the database data in the config!<br>Enter the correct data to connect to the database or delete the folder manually.');

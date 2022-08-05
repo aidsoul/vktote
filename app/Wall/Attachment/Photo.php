@@ -2,20 +2,15 @@
 
 namespace Vktote\Wall\Attachment;
 
-use Vktote\Wall\Attachment\AttachmentInterface;
-
 /**
  * Photo class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Photo extends Attachment implements AttachmentInterface
+class Photo extends Attachment implements PhotoInterface
 {
-
     /**
-     * __construct function
-     *
      * @param array $photo
      */
     public function __construct(private array $photo)
