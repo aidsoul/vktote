@@ -34,10 +34,6 @@ trait ActionConfig
                 ) {
                     $item = parent::$config[$className][$property];
                     if (!empty($item)) {
-                        $tag = "/[<\/][a-zA-Z]{1,7}[>]+/";
-                        if (preg_match($tag, $item) || preg_match($tag, $className)) {
-                            Message::find()->show(false, __TRAIT__, 'tag', "{$className}");
-                        }
                         $this->$property = $item;
                         if (
                             !method_exists($this, $property) or
@@ -59,15 +55,5 @@ trait ActionConfig
         } catch (\Exception $e) {
             throw new \Exception($e);
         }
-    }
-
-    /**
-     * Get function
-     *
-     * @return static
-     */
-    public static function get(): self
-    {
-        return new self;
     }
 }

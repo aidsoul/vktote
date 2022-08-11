@@ -52,7 +52,7 @@ try{
 
 
 }catch(\Exception  $e){
-    echo $e;
+    echo ERROR_404;
 }
 
 

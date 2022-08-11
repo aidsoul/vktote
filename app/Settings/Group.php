@@ -25,10 +25,10 @@ class Group
     private function send(int $status, string $pathIni): array
     {
         return [
-            'status'=>$status,
-            'file'=>$_POST['fileName'],
-            'pathIni' =>$pathIni
-            ];
+            'status' => $status,
+            'file' => $_POST['fileName'],
+            'pathIni' => $pathIni
+        ];
     }
 
     /**
@@ -46,7 +46,7 @@ class Group
             mkdir($file->folder);
         }
         if (!file_exists($file->configPath)) {
-            file_put_contents($file->configPath, include SETTINGS_PATTERN.'/PatternIni.php');
+            file_put_contents($file->configPath, include SETTINGS_PATTERN . '/PatternIni.php');
             $send = $this->send(1, $file->configPath);
         } else {
             $send = $this->send(0, $file->configPath);
@@ -62,9 +62,10 @@ class Group
      * @param integer $status
      * @return void
      */
-    private function checkFileExist(string $file, int $status){
-        if(!file_exists($file)){
-            die(json_encode(['status'=> $status,'name'=>$file]));
+    private function checkFileExist(string $file, int $status)
+    {
+        if (!file_exists($file)) {
+            die(json_encode(['status' => $status, 'name' => $file]));
         }
     }
 
@@ -81,25 +82,24 @@ class Group
         $ret = [];
         if (is_dir($file->folder)) {
             //check if exist ini file
-            $this->checkFileExist($file->configPath,4);
-            try
-            {
+            $this->checkFileExist($file->configPath, 4);
+            try {
                 // delete group from database
                 Config::set($file->iniFullPath);
                 $vk = new Vkgroup;
-                if($idGroup = $vk->check(Vk::get()->idGroup)){
+                if ($idGroup = $vk->check(Vk::get()->idGroup)) {
                     $vk->remove($idGroup);
-                }else{
-                    die(json_encode(['status'=> 3,'name'=>Vk::get()->idGroup]));
+                } else {
+                    die(json_encode(['status' => 3, 'name' => Vk::get()->idGroup]));
                 }
-            }catch(\Exception $e){
-                die(json_encode(['status'=> 2]));
+            } catch (\Exception $e) {
+                die(json_encode(['status' => 2]));
             }
             unlink($file->configPath);
             rmdir($file->folder);
-            $ret = ['status'=> 1,'name'=> 0];
-        }else{
-            $ret = ['status'=> 0,'name'=>$file->folder];
+            $ret = ['status' => 1, 'name' => 0];
+        } else {
+            $ret = ['status' => 0, 'name' => $file->folder];
         }
 
         return json_encode($ret);

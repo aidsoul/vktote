@@ -2,6 +2,8 @@
 
 namespace Vktote\Vk;
 
+use GuzzleHttp\Client;
+
 /**
  * Api
  *
@@ -10,57 +12,63 @@ namespace Vktote\Vk;
  * @author AidSoul
  * @license MIT License
  */
-class Api
+class Api implements ApiInterface
 {
 
   /**
    * @var string $token Token id
    */
-    private static string $token;
+  private static string $token = "token";
 
   /**
-   * @var int $idGroup Id group for parser
+   * @var string|int $idGroup Id group for parser
    */
-    private static $idGroup = 1345;
+  private static string|int $idGroup = 1345;
 
   /**
    * @var int $count Number of posts
    */
-    private static $count = 2;
+  private static int $count = 1;
 
   /**
    * @param string $token
-   * @param int $idGroup
-   * @param int $count
+   * @param string|integer $idGroup
+   * @param integer $count
    */
-    public function __construct($token, $idGroup, $count)
-    {
-        self::$token = $token;
-        self::$idGroup = $idGroup;
-        self::$count = $count;
-    }
+  public function __construct(string $token, string|int $idGroup, int $count)
+  {
+    self::$token = $token;
+    self::$idGroup = $idGroup;
+    self::$count = $count;
+  }
 
   /**
    * Create request
    *
    * @return array
    */
-    protected static function add(): array
-    {
-        $link = "https://api.vk.com/method/wall.get?access_token=";
-        $send = $link.self::$token."&v=5.131&domain=".self::$idGroup."&count=".self::$count."";
-        $client = new \GuzzleHttp\Client();
-        $response = $client->get($send);
-        return json_decode($response->getBody(), true);
-    }
+  private static function add(): array
+  {
+    $client = new Client();
+    $response = $client->get('https://api.vk.com/method/wall.get',
+    [
+      'query' => ['access_token' => self::$token,
+      'v' => '5.131',
+      'domain' => self::$idGroup,
+      'count' => self::$count
+      ]
+      ]
+  );
+    return json_decode($response->getBody(), true);
+  }
 
-    /**
-     * Get request
-     *
-     * @return array
-     */
-    public static function get(): array
-    {
-        return self::add();
-    }
+  /**
+   * Get request
+   *
+   * @return array
+   */
+  public static function get(): array
+  {
+    return self::add();
+  }
 }

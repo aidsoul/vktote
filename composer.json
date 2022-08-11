@@ -1,7 +1,7 @@
 {
     "name": "aidsoul/vktote",
     "license": "MIT",
-    "optimize-autoloader": true,
+    "apcu-autoloader": true,
     "autoload": {
         "psr-4": {
             "Vktote\\": "app"
@@ -16,12 +16,12 @@
     ],
     "require": {
         "php": ">=8",
-        "longman/telegram-bot": "^0.74.0",
         "twig/twig": "3.4",
         "league/route": "^5.1",
         "laminas/laminas-diactoros": "^2.11",
         "laminas/laminas-httphandlerrunner": "^2.1",
         "league/container": "^4.2",
-        "aidsoul/pdo": "^1.0"
+        "aidsoul/pdo": "^1.0",
+        "guzzlehttp/guzzle": "^7.4"
         }
 }

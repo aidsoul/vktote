@@ -13,7 +13,7 @@ use Vktote\Config\ConfigInterface;
 class Telegram extends Config implements ConfigInterface
 {
     use ActionConfig;
-
+    
     /**
      * @var string
      */

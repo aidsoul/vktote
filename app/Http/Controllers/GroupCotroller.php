@@ -56,8 +56,6 @@ class GroupCotroller extends Controller implements UserInterface
                 if (is_dir($groupFolder)) {
                     // ini file
                     $this->checkExistFile($fileIniPath);
-                    // // php file
-                    // $this->checkExistFile($filePhpPath);
                 } else {
                     $this->response
                         ->getBody()

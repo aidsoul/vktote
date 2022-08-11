@@ -6,12 +6,12 @@ use Vktote\DataBase\Database;
 
 /**
  * Post class
+ * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Post extends Database
+class Post extends Database implements PostInterface
 {
-
     /**
      * @param string $tableName
      * @param string $idPost
@@ -21,7 +21,6 @@ class Post extends Database
         private readonly string $tableName = 'post',
         private readonly string $idPost = 'id_post',
         private readonly string $groupId = 'group_id'
-
     ) {
         parent::__construct();
     }
@@ -31,6 +30,7 @@ class Post extends Database
      *
      * @param integer $postId
      * @param integer $groupId
+     * 
      * @return void
      */
     public function create(int $postId, int $groupId): void

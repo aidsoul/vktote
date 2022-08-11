@@ -8,7 +8,7 @@ namespace Vktote\Message;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Message
+class Message implements MessageInterface
 {
 
     /**

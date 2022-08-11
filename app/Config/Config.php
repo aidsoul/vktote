@@ -24,4 +24,14 @@ class Config
   {
     self::$config = parse_ini_file($сonfigPath, true);
   }
+
+  /**
+   * Get function
+   *
+   * @return static
+   */
+  public static function get(): static
+  {
+    return new static;
+  }
 }

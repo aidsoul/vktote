@@ -8,7 +8,6 @@ require_once $path . 'vendor/autoload.php';
 require_once $path . 'config.php';
 Vktote\Bot::start(__DIR__ . '/' . $argv[1] . '/' . GROUP_CONFIG);
 
-$v = 4;
 $memory = memory_get_usage() - $memory;
 $time = microtime(true) - $start;
 

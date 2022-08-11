@@ -4,6 +4,7 @@ namespace Vktote;
 
 use Vktote\Config\Config;
 use Vktote\Telegram\Telegram;
+use Vktote\Wall\Wall;
 
 /**
  * Parsing
@@ -21,6 +22,6 @@ final class Bot
     public static function start(string $сonfigPath): void
     {
         Config::set($сonfigPath);
-        (new Telegram)->send();
+        (new Telegram)->send(new Wall);
     }
 }
