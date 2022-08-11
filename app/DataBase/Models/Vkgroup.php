@@ -7,8 +7,10 @@ use Vktote\DataBase\Database;
 /**
  * Vkgroup class
  * 
+ * @author aidsoul <work-aidsoul@outlook.com>
+ * @license MIT
  */
-class Vkgroup extends Database
+class Vkgroup extends Database implements VkgroupInterface
 {
     /**
      * @param string $tableName

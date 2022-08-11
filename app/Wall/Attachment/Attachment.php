@@ -11,12 +11,6 @@ namespace Vktote\Wall\Attachment;
  */
 class Attachment implements AttachmentInterface
 {
-
-    /**
-     * @var array
-     */
-    private array $attachment;
-
     /**
      * @var array
      */
@@ -30,10 +24,13 @@ class Attachment implements AttachmentInterface
      */
     public function set(array $attachment): void
     {
-        $this->attachment = $attachment;
         $type = $attachment['type'];
         if (method_exists($this, $type)) {
-            $this->$type();
+            $sendArray = $attachment[$type];
+            match ($type){
+                'photo' => $this->photo(new Photo($sendArray)),
+                'link' => $this->link(new Link($sendArray))
+            };
         }
     }
 
@@ -42,9 +39,9 @@ class Attachment implements AttachmentInterface
      *
      * @return void
      */
-    private function photo(): void
+    private function photo(PhotoInterface $photo): void
     {
-        $this->cleanAttach['media'][] = (new Photo($this->attachment[__FUNCTION__]))->get();
+        $this->cleanAttach['media'][] = $photo->get();
     }
 
     /**
@@ -64,9 +61,9 @@ class Attachment implements AttachmentInterface
      *
      * @return void
      */
-    private function link(): void
+    private function link(LinkInterface $link): void
     {
-        $this->cleanAttach['link'][] = (new Link($this->attachment[__FUNCTION__]))->get();
+        $this->cleanAttach['link'][] = $link->get();
     }
 
     /**

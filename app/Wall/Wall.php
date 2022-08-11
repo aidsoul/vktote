@@ -4,10 +4,10 @@ namespace Vktote\Wall;
 
 use Generator;
 use Vktote\Config\Vk as V;
-use Vktote\DataBase\Models\Post;
-use Vktote\DataBase\Models\Vkgroup;
 use Vktote\Vk\Api as VkApi;
+use Vktote\Vk\ApiInterface;
 use Vktote\Wall\Attachment\Attachment;
+use Vktote\Wall\Attachment\AttachmentInterface;
 
 /**
  * Wall
@@ -15,7 +15,7 @@ use Vktote\Wall\Attachment\Attachment;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Wall
+class Wall implements WallInterface
 {
     /**
      * @var integer
@@ -30,7 +30,7 @@ class Wall
     /**
      * @var integer
      */
-    private int $author = 0;
+    private int $author;
 
     /**
      * @var array
@@ -43,15 +43,9 @@ class Wall
      *
      * @return Generator
      */
-    private function getWall(): Generator
+    private function getWall(ApiInterface $wall): Generator
     {
-        $wall = (new VkApi(
-            V::get()->token,
-            V::get()->idGroup,
-            V::get()->count
-        ))->get()['response']['items'];
-
-        foreach ($wall as $currValue) {
+        foreach ($wall->get()['response']['items'] as $currValue) {
             yield $currValue;
         }
     }
@@ -76,9 +70,10 @@ class Wall
      * @param array $attach
      * @return void
      */
-    private function middleBodyWall(array $attach): void
-    {
-        $attachmetAction = new Attachment;
+    private function middleBodyWall(
+        array $attach,
+        AttachmentInterface $attachmetAction = new Attachment
+    ): void {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
                 if ($valueAttach['type'] === 'video') {
@@ -88,57 +83,21 @@ class Wall
                 $attachmetAction->set($valueAttach);
             }
         }
-
+        
         if (isset($attach['signer_id'])) {
             $this->author = $attach['signer_id'];
-        }else{
+        } else {
             $this->author = 0;
         }
-
-        $this->cleanWall[$this->id] =
+        $this->cleanWall[] =
             [
+                'id'   => $this->id,
                 'text' => $this->text,
                 'author' => $this->author
             ] +
             $attachmetAction->get();
     }
-
-
-    /**
-     * Exist group function
-     *
-     * @return integer
-     */
-    private function checkIfExistGroup(): int
-    {
-        $vkGroup = new Vkgroup;
-        $groupName = V::get()->idGroup;
-        $getVkGroup = $vkGroup->check($groupName);
-        if (!$getVkGroup) {
-            $vkGroup->create($groupName);
-            $getVkGroup = $vkGroup->check($groupName);
-        }
-
-        return $getVkGroup;
-    }
-
-    /**
-     * Exist post function
-     *
-     * @return bool
-     */
-    private function checkIfExistPost(int $postId): bool
-    {
-        $status = false;
-        $groupId = $this->checkIfExistGroup();
-        $post = new Post;
-        if (!$post->check($postId, $groupId)) {
-            $post->create($postId, $groupId);
-            $status = true;
-        }
-
-        return $status;
-    }
+    
     /**
      * Collect function
      *
@@ -146,15 +105,17 @@ class Wall
      */
     private function collect(): void
     {
-        foreach ($this->getWall() as $value) {
-            if($this->checkIfExistPost($value['id'])){
-            $this->id = $value['id'];
-            $this->text = $value['text'] . "\r\n";
-            if (isset($value['copy_history'])) {
-                $this->copyHistory($value['copy_history']);
-            } else {
-                $this->middleBodyWall($value);
-            }
+        foreach ($this->getWall((new VkApi(
+            V::get()->token,
+            V::get()->idGroup,
+            V::get()->count
+        ))) as $value) {
+                $this->id = $value['id'];
+                $this->text = $value['text'] . "\r\n";
+                if (isset($value['copy_history'])) {
+                    $this->copyHistory($value['copy_history']);
+                } else {
+                    $this->middleBodyWall($value);
             }
         }
     }
@@ -165,9 +126,13 @@ class Wall
     public function get(): Generator
     {
         $this->collect();
-        foreach($this->cleanWall as $v){
+        foreach ($this->cleanWall as $v) {
             yield $v;
         }
     }
 
+    public function __destruct()
+    {
+        unset($this->cleanWall);
+    }
 }
