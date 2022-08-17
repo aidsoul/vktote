@@ -2,7 +2,20 @@
 
 namespace Vktote\Wall;
 
+use Generator;
+
+/**
+ * Wall interface
+ * 
+ * @license 
+ * @author aidsoul <work-aidsoul@outlook.com>
+ */
 interface WallInterface
 {
-    public function get();
+    /**
+     * Get clean wall array
+     *
+     * @return \Generator
+     */
+    public function get(): Generator;
 }

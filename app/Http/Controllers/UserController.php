@@ -13,6 +13,9 @@ use Vktote\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
+    /**
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function login(): ResponseInterface
     {
         $this->response

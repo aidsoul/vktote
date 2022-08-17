@@ -11,7 +11,6 @@ Vktote\Bot::start(__DIR__ . '/' . $argv[1] . '/' . GROUP_CONFIG);
 $memory = memory_get_usage() - $memory;
 $time = microtime(true) - $start;
 
-// Перевод в КБ, МБ.
 $i = 0;
 while (floor($memory / 1024) > 0) {
 	$i++;

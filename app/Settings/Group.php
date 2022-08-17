@@ -62,7 +62,7 @@ class Group
      * @param integer $status
      * @return void
      */
-    private function checkFileExist(string $file, int $status)
+    private function checkFileExist(string $file, int $status): void
     {
         if (!file_exists($file)) {
             die(json_encode(['status' => $status, 'name' => $file]));

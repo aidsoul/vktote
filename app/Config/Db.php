@@ -12,25 +12,23 @@ use Vktote\Config\ConfigInterface;
  */
 class Db extends Config implements ConfigInterface
 {
-    use ActionConfig;
+    /**
+     * @var string
+     */
+    protected string $host;
 
     /**
      * @var string
      */
-    private string $host;
+    protected string $dbName;
 
     /**
      * @var string
      */
-    private string $dbName;
+    protected string $user;
 
     /**
      * @var string
      */
-    private string $user;
-
-    /**
-     * @var string
-     */
-    private string $pass;
+    protected string $pass;
 }
