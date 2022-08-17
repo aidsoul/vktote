@@ -12,30 +12,28 @@ use Vktote\Config\ConfigInterface;
  */
 class Telegram extends Config implements ConfigInterface
 {
-    use ActionConfig;
-    
     /**
      * @var string
      */
-    private string $botApiKey;
+    protected string $botApiKey;
 
     /**
      * @var string
      */
-    private string $botName;
+    protected string $botName;
 
     /**
      * @var integer
      */
-    private int $chatId;
+    protected int $chatId;
 
     /**
      * @var boolean
      */
-    private bool $webHook;
+    protected bool $webHook;
 
     /**
      * @var string
      */
-    private string $hookUrl;
+    protected string $hookUrl;
 }

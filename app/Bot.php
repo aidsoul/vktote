@@ -7,8 +7,8 @@ use Vktote\Telegram\Telegram;
 use Vktote\Wall\Wall;
 
 /**
- * Parsing
- *
+ * Start parsing and sending data
+ * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */

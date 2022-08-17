@@ -2,8 +2,8 @@
 
 namespace Vktote\Config;
 
-use Vktote\Message\Message;
 use Vktote\Config\ConfigInterface;
+use Vktote\Message\Message;
 
 /**
  * Vk class
@@ -13,29 +13,27 @@ use Vktote\Config\ConfigInterface;
  */
 class Vk extends Config implements ConfigInterface
 {
-    use ActionConfig;
+    /**
+     * @var string
+     */
+    protected string $token;
 
     /**
      * @var string
      */
-    private string $token;
-
-    /**
-     * @var string
-     */
-    private string $idGroup;
+    protected string $idGroup;
 
     /**
      * @var integer
      */
-    private int $count;
+    protected int $count;
 
     /**
      * Count function
      *
      * @return boolean
      */
-    private function count(): bool
+    protected function count(): bool
     {
             if (isset($this->count) and $this->count > 100) {
                 Message::find()->show(false, __CLASS__, 'count');

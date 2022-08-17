@@ -72,7 +72,7 @@ class Wall implements WallInterface
      */
     private function middleBodyWall(
         array $attach,
-        AttachmentInterface $attachmetAction = new Attachment
+        AttachmentInterface $attachmetAction = new Attachment()
     ): void {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
@@ -129,10 +129,5 @@ class Wall implements WallInterface
         foreach ($this->cleanWall as $v) {
             yield $v;
         }
-    }
-
-    public function __destruct()
-    {
-        unset($this->cleanWall);
     }
 }

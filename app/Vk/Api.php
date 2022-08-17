@@ -50,15 +50,18 @@ class Api implements ApiInterface
   private static function add(): array
   {
     $client = new Client();
-    $response = $client->get('https://api.vk.com/method/wall.get',
-    [
-      'query' => ['access_token' => self::$token,
-      'v' => '5.131',
-      'domain' => self::$idGroup,
-      'count' => self::$count
+    $response = $client->get(
+      'https://api.vk.com/method/wall.get',
+      [
+        'query' => [
+          'access_token' => self::$token,
+          'v' => '5.131',
+          'domain' => self::$idGroup,
+          'count' => self::$count
+        ]
       ]
-      ]
-  );
+    );
+
     return json_decode($response->getBody(), true);
   }
 

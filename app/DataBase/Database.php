@@ -36,6 +36,9 @@ abstract class Database
         }
     }
 
+    /**
+     * @return \Aidsoul\Pdo\Db
+     */
     public function pdo(): Db
     {
         return self::$pdo;
