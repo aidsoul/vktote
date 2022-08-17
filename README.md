@@ -16,7 +16,7 @@ You need:
 To install, use the command: `git clone https://github.com/aidsoul/vktote`.
 Download the necessary libraries using the command: `composer install`.
 
-Or use command `composer require aidsoul/vktote`.
+Or use command `composer create-project aidsoul/vktote`.
 
 ## Connection example
 **All files for working with groups are located in the "groups" folder.**

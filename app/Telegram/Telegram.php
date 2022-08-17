@@ -26,7 +26,7 @@ class Telegram
     public function send(WallInterface $wall): void
     {
         foreach ($wall->get() as $v) {
-            // if (Check::checkIfExistPost($v['id'], V::get()->idGroup)) {
+            if (Check::checkIfExistPost($v['id'], V::get()->idGroup)) {
                 $text = Text::change($v['text']);
                 $api  = new Api();
                 if (isset($v['link'])) {
@@ -41,6 +41,6 @@ class Telegram
                 }
                 if (!empty($text)) $api->sendMessage($text);
             }
-        // }
+        }
     }
 }
