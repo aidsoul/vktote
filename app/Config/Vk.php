@@ -2,7 +2,6 @@
 
 namespace Vktote\Config;
 
-use Vktote\Config\ConfigInterface;
 use Vktote\Message\Message;
 
 /**
@@ -11,7 +10,7 @@ use Vktote\Message\Message;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Vk extends Config implements ConfigInterface
+class Vk extends Config
 {
     /**
      * @var string
@@ -35,10 +34,10 @@ class Vk extends Config implements ConfigInterface
      */
     protected function count(): bool
     {
-            if (isset($this->count) and $this->count > 100) {
-                Message::find()->show(false, __CLASS__, 'count');
-            } else {
-                return true;
-            }
+        if (isset($this->count) and $this->count > 100) {
+            Message::find()->show(false, __CLASS__, 'count');
+        } else {
+            return true;
+        }
     }
 }

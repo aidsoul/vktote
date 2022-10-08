@@ -4,10 +4,11 @@ namespace Vktote;
 
 use Vktote\Config\Config;
 use Vktote\Telegram\Telegram;
-use Vktote\Wall\Wall;
+use Vktote\Vk\Wall\Wall;
 
 /**
  * Start parsing and sending data
+ * Entry point in programm
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT

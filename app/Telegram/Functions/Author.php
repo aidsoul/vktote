@@ -6,6 +6,11 @@ use Vktote\Telegram\Html\Link;
 
 class Author
 {
+    /**
+     * @param integer $author
+     * 
+     * @return string
+     */
     public static function change(int $author): string
     {
         $link = 'https://vk.com/id';

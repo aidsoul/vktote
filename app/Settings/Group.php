@@ -5,7 +5,7 @@ namespace Vktote\Settings;
 use Vktote\Config\Config;
 use Vktote\Config\Vk;
 use Vktote\DataBase\Models\Vkgroup;
-use Vktote\File\File;
+use Vktote\Settings\File\File;
 
 /**
  * Group class
@@ -20,6 +20,7 @@ class Group
      * @param integer $status
      * @param string $pathIni
      * @param string $pathPhp
+     * 
      * @return void
      */
     private function send(int $status, string $pathIni): array

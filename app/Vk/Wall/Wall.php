@@ -1,13 +1,12 @@
 <?php
 
-namespace Vktote\Wall;
+namespace Vktote\Vk\Wall;
 
 use Generator;
-use Vktote\Config\Vk as V;
 use Vktote\Vk\Api as VkApi;
 use Vktote\Vk\ApiInterface;
-use Vktote\Wall\Attachment\Attachment;
-use Vktote\Wall\Attachment\AttachmentInterface;
+use Vktote\Vk\Wall\Attachment\Attachment;
+use Vktote\Vk\Wall\Attachment\AttachmentInterface;
 
 /**
  * Wall
@@ -76,11 +75,9 @@ class Wall implements WallInterface
     ): void {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
-                if ($valueAttach['type'] === 'video') {
-                    $this->text = '';
-                    continue;
+                if ($valueAttach['type'] !== 'video') {
+                    $attachmetAction->set($valueAttach);
                 }
-                $attachmetAction->set($valueAttach);
             }
         }
         
@@ -105,11 +102,7 @@ class Wall implements WallInterface
      */
     private function collect(): void
     {
-        foreach ($this->getWall((new VkApi(
-            V::get()->token,
-            V::get()->idGroup,
-            V::get()->count
-        ))) as $value) {
+        foreach ($this->getWall((new VkApi())) as $value) {
                 $this->id = $value['id'];
                 $this->text = $value['text'] . "\r\n";
                 if (isset($value['copy_history'])) {

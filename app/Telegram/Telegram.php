@@ -2,12 +2,13 @@
 
 namespace Vktote\Telegram;
 
-use Vktote\Config\Vk as V;
+use Vktote\Config\Vk;
 use Vktote\Telegram\Api\Api;
+use Vktote\Telegram\Api\ApiInterface;
 use Vktote\Telegram\Functions\Author;
 use Vktote\Telegram\Functions\Link as FLink;
 use Vktote\Telegram\Functions\Text;
-use Vktote\Wall\WallInterface;
+use Vktote\Vk\Wall\WallInterface;
 
 /**
  * Telegram class
@@ -20,15 +21,15 @@ class Telegram
     /**
      * Send post to the Telegram channel
      *
-     * @param \Vktote\Wall\WallInterface $wall
+     * @param \Vktote\Vk\Wall\WallInterface $wall
+     * 
      * @return void
      */
-    public function send(WallInterface $wall): void
+    public function send(WallInterface $wall, ApiInterface $api = new Api()): void
     {
         foreach ($wall->get() as $v) {
-            if (Check::checkIfExistPost($v['id'], V::get()->idGroup)) {
+            if (Check::checkIfExistPost($v['id'], Vk::get()->idGroup)) {
                 $text = Text::change($v['text']);
-                $api  = new Api();
                 if (isset($v['link'])) {
                     foreach ($v['link'] as $itmLink) {
                         $text = FLink::change($itmLink, $text);

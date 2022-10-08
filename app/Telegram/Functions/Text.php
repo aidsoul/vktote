@@ -6,7 +6,12 @@ use Vktote\Telegram\Html\Link;
 
 class Text
 {
-    public static function change(string $text)
+    /**
+     * @param string $text
+     * 
+     * @return string
+     */
+    public static function change(string $text): string 
     {
         $paternLink = '#(?:https?|http|ftp|ftps)://[^\s\,]+#i';
         if (preg_match_all($paternLink, $text, $linkArr)) {

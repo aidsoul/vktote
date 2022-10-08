@@ -3,8 +3,15 @@
 namespace Vktote\Telegram\Api;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Vktote\Config\Telegram as T;
 
+/**
+ * Telegram Api class
+ * 
+ * @license MIT
+ * @author aidsoul <work-aidsoul@outlook.com>
+ */
 class Api implements ApiInterface
 {
     /**
@@ -12,24 +19,22 @@ class Api implements ApiInterface
      */
     private static string $link = '';
 
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private Client $client;
-
-    public function __construct()
+    public function __construct(
+        private ClientInterface $client = new Client()
+    )
     {
         self::$link = 'https://api.telegram.org/bot' . T::get()->botApiKey;
-        $this->client = new Client();
     }
 
     /**
      * @param string $text
+     * 
      * @return void
      */
-    public function sendMessage(string $text): void
-    {
-        $message = new SendMessage();
+    public function sendMessage(
+        string $text,
+        SendMessageInterface $message = new SendMessage()
+    ): void {
         $this->client->get(
             self::$link . '/sendMessage',
             [
@@ -41,11 +46,14 @@ class Api implements ApiInterface
     /**
      * @param string $text
      * @param array $media
+     * 
      * @return void
      */
-    public function sendMediaGroup(string $text, array $media): void
-    {
-        $mediaGroup = new SendMediaGroup();
+    public function sendMediaGroup(
+        string $text,
+        array $media,
+        SendMediaGroupInterface $mediaGroup = new SendMediaGroup()
+    ): void {
         $this->client->get(
             self::$link . '/sendMediaGroup',
             [

@@ -62,4 +62,23 @@ class Post extends Database implements PostInterface
 
         return  $ask ? $ask[$this->idPost] : false;
     }
+
+    /**
+     * Get last post
+     *
+     * @param integer $groupId
+     * @return void
+     */
+    public function getLastPost(string $groupName): int
+    {
+        $ask = self::$pdo
+            ->select(['MAX(' . $this->idPost . ') as max'])
+            ->from($this->tableName)
+            ->leftJoin('vkgroup')->on('group_id', 'id_group')
+            ->where('name', '=', $groupName)
+            ->execute()
+            ->fetch();
+
+        return  empty($ask['max']) ? 0 : $ask['max'];
+    }
 }

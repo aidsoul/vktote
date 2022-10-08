@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\Wall\Attachment;
+namespace Vktote\Vk\Wall\Attachment;
 
 
 /**
@@ -20,6 +20,7 @@ class Attachment implements AttachmentInterface
      * Set function
      *
      * @param array $attachment
+     * 
      * @return void
      */
     public function set(array $attachment): void

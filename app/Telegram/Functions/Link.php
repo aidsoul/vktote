@@ -16,6 +16,7 @@ class Link
     /**
      * @param array $link
      * @param string $text
+     * 
      * @return string
      */
     public static function change(array $link, string $text): string

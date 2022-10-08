@@ -2,15 +2,13 @@
 
 namespace Vktote\Config;
 
-use Vktote\Config\ConfigInterface;
-
 /**
  * Telegram class
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Telegram extends Config implements ConfigInterface
+class Telegram extends Config
 {
     /**
      * @var string

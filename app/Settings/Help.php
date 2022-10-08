@@ -13,6 +13,7 @@ class Help
      * getShortName function
      *
      * @param object $obj
+     * 
      * @return void
      */
     public static function getShortName(object $obj): string
@@ -24,6 +25,7 @@ class Help
      * addHeader function
      *
      * @param string $header
+     * 
      * @return void
      */
     public static function addHeader(string $header): string

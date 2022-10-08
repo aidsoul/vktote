@@ -44,6 +44,8 @@ class Message implements MessageInterface
      * @param bool $type
      * @param string $className
      * @param string $messageName
+     * 
+     * @return void
      */
     public function show(
         bool $type,
