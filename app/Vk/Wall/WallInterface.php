@@ -1,6 +1,6 @@
 <?php 
 
-namespace Vktote\Wall;
+namespace Vktote\Vk\Wall;
 
 use Generator;
 

@@ -2,11 +2,16 @@
 
 namespace Vktote\Config;
 
-use Vktote\Config\ConfigInterface;
-
-class User extends Config implements ConfigInterface
+/**
+ * Class of User
+ * 
+ * @author aidsoul work-aidsoul@outlook.com
+ * @license MIT
+ */
+class User extends Config
 {
     /**
+     * Summary of password
      * @var string
      */
     protected string $password;

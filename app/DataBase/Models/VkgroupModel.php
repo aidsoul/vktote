@@ -10,7 +10,7 @@ use Vktote\DataBase\Database;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Vkgroup extends Database implements VkgroupInterface
+class VkgroupModel extends Database implements VkgroupInterface
 {
     /**
      * @param string $tableName
@@ -18,9 +18,9 @@ class Vkgroup extends Database implements VkgroupInterface
      * @param string $name
      */
     public function __construct(
-        private readonly string $tableName = 'vkgroup',
-        private readonly string $idGroup = 'id_group',
-        private readonly string $name = 'name'
+        private string $tableName = 'vkgroup',
+        private string $idGroup = 'id_group',
+        private string $name = 'name'
 
     ) {
         parent::__construct();
@@ -28,6 +28,7 @@ class Vkgroup extends Database implements VkgroupInterface
 
     /**
      * @param string $nameGroup
+     * 
      * @return void
      */
     public function create(string $nameGroup): void
@@ -41,6 +42,7 @@ class Vkgroup extends Database implements VkgroupInterface
 
     /**
      * @param string $nameGroup
+     * 
      * @return integer|boolean
      */
     public function check(string $nameGroup): int|bool
@@ -58,6 +60,7 @@ class Vkgroup extends Database implements VkgroupInterface
 
     /**
      * @param integer|string $idGroup
+     * 
      * @return void
      */
     public function remove(int|string $idGroup): void

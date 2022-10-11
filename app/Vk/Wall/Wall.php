@@ -1,13 +1,12 @@
 <?php
 
-namespace Vktote\Wall;
+namespace Vktote\Vk\Wall;
 
 use Generator;
-use Vktote\Config\Vk as V;
 use Vktote\Vk\Api as VkApi;
 use Vktote\Vk\ApiInterface;
-use Vktote\Wall\Attachment\Attachment;
-use Vktote\Wall\Attachment\AttachmentInterface;
+use Vktote\Vk\Wall\Attachment\Attachment;
+use Vktote\Vk\Wall\Attachment\AttachmentInterface;
 
 /**
  * Wall
@@ -45,6 +44,9 @@ class Wall implements WallInterface
      */
     private function getWall(ApiInterface $wall): Generator
     {
+        if (empty($wall))
+            exit();
+        $a = $wall->get();
         foreach ($wall->get()['response']['items'] as $currValue) {
             yield $currValue;
         }
@@ -73,31 +75,29 @@ class Wall implements WallInterface
     private function middleBodyWall(
         array $attach,
         AttachmentInterface $attachmetAction = new Attachment()
-    ): void {
+        ): void
+    {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
-                if ($valueAttach['type'] === 'video') {
-                    $this->text = '';
-                    continue;
-                }
                 $attachmetAction->set($valueAttach);
             }
         }
-        
+
         if (isset($attach['signer_id'])) {
             $this->author = $attach['signer_id'];
-        } else {
+        }
+        else {
             $this->author = 0;
         }
         $this->cleanWall[] =
-            [
-                'id'   => $this->id,
-                'text' => $this->text,
-                'author' => $this->author
-            ] +
+        [
+            'id' => $this->id,
+            'text' => $this->text,
+            'author' => $this->author
+        ] +
             $attachmetAction->get();
     }
-    
+
     /**
      * Collect function
      *
@@ -105,17 +105,14 @@ class Wall implements WallInterface
      */
     private function collect(): void
     {
-        foreach ($this->getWall((new VkApi(
-            V::get()->token,
-            V::get()->idGroup,
-            V::get()->count
-        ))) as $value) {
-                $this->id = $value['id'];
-                $this->text = $value['text'] . "\r\n";
-                if (isset($value['copy_history'])) {
-                    $this->copyHistory($value['copy_history']);
-                } else {
-                    $this->middleBodyWall($value);
+        foreach ($this->getWall((new VkApi())) as $value) {
+            $this->id = $value['id'];
+            $this->text = $value['text'] . "\r\n";
+            if (isset($value['copy_history'])) {
+                $this->copyHistory($value['copy_history']);
+            }
+            else {
+                $this->middleBodyWall($value);
             }
         }
     }

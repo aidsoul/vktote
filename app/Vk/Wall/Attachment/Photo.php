@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\Wall\Attachment;
+namespace Vktote\Vk\Wall\Attachment;
 
 /**
  * Photo class
@@ -8,7 +8,7 @@ namespace Vktote\Wall\Attachment;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Photo extends Attachment implements PhotoInterface
+class Photo implements PhotoInterface
 {
     /**
      * @param array $photo
@@ -40,7 +40,7 @@ class Photo extends Attachment implements PhotoInterface
             'type' => 'photo',
             'caption' => $this->photo['text'],
             'media' => $this->getBestSizeImage(),
-            "parse_mode" => "html"
+            'parse_mode' => 'html'
         ];
     }
 }

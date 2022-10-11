@@ -39,7 +39,7 @@ abstract class Database
     /**
      * @return \Aidsoul\Pdo\Db
      */
-    public function pdo(): Db
+    private function pdo(): Db
     {
         return self::$pdo;
     }

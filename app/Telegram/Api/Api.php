@@ -3,54 +3,64 @@
 namespace Vktote\Telegram\Api;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Vktote\Config\Telegram as T;
 
+/**
+ * Telegram Api class
+ * 
+ * @license MIT
+ * @author aidsoul <work-aidsoul@outlook.com>
+ */
 class Api implements ApiInterface
 {
     /**
      * @var string
      */
-    private static string $link = '';
+    private string $link = '';
 
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private Client $client;
-
-    public function __construct()
+    public function __construct(
+        private ClientInterface $client = new Client()
+        )
     {
-        self::$link = 'https://api.telegram.org/bot' . T::get()->botApiKey;
-        $this->client = new Client();
+        $this->link = 'https://api.telegram.org/bot' . T::get()->botApiKey;
     }
 
     /**
      * @param string $text
+     * 
      * @return void
      */
-    public function sendMessage(string $text): void
+    public function sendMessage(
+        string $text,
+        SendMessageInterface $message = new SendMessage()
+        ): void
     {
-        $message = new SendMessage();
         $this->client->get(
-            self::$link . '/sendMessage',
-            [
-                'query' => $message->send($text)
-            ]
+            $this->link . '/sendMessage',
+        [
+            'query' => $message->send($text)
+        ]
         );
     }
 
     /**
      * @param string $text
      * @param array $media
+     * 
      * @return void
      */
-    public function sendMediaGroup(string $text, array $media): void
+    public function sendMediaGroup(
+        string $text,
+        array $media,
+        SendMediaGroupInterface $mediaGroup = new SendMediaGroup()
+        ): void
     {
-        $mediaGroup = new SendMediaGroup();
         $this->client->get(
-            self::$link . '/sendMediaGroup',
-            [
-                'query' => $mediaGroup->send($text, $media)
-            ]
+            $this->link . '/sendMediaGroup',
+        [
+            'query' => $mediaGroup->send($text, $media)
+        ]
         );
     }
 }

@@ -2,11 +2,10 @@
 
 namespace Vktote\Telegram\Functions;
 
-use Vktote\Telegram\Html\Font;
 use Vktote\Telegram\Html\Link as HtmlLink;
 
 /**
- * Function for work with links
+ * Class function for work with links
  * 
  * @license 
  * @author aidsoul <work-aidsoul@outlook.com>
@@ -16,29 +15,35 @@ class Link
     /**
      * @param array $link
      * @param string $text
+     * 
      * @return string
      */
-    public static function change(array $link, string $text): string
+    public function change(array $link, string $text): string
     {
-        $message = Font::b($text . "\r\n");
-        $message .= $link['title'] . "\r\n";
-        if (!empty($link['description'])) {
-            $symbol = '[…]';
-            $nextStr = '[читать далее...]';
-            if (strpos($link['description'], '[…]')) {
-                $link = str_replace(
-                    $symbol,
-                    HtmlLink::a(
-                        $link['url'],
+        foreach ($link as $itmLink) {
+            if (!empty($itmLink['description'])) {
+                $message = $text . "\r\n";
+                $symbol = '[…]';
+                $nextStr = '[читать далее...]';
+                if (strpos($itmLink['description'], $symbol)) {
+                    $linkEdit = str_replace(
+                        $symbol,
+                        HtmlLink::a(
+                        $itmLink['url'],
                         $nextStr
                     ),
-                    $link['description']
-                );
-            } else {
-                $link = $link['description'] . " " .
-                HtmlLink::a($link['url'], $nextStr);
+                        $itmLink['description']
+                    );
+                }
+                else {
+                    $linkEdit = $itmLink['description'] . " " .
+                        HtmlLink::a($itmLink['url'], $nextStr);
+                }
+                $message .= "{$linkEdit}\r\n";
+            }else
+            {
+                $message = $text;
             }
-            $message .= "{$link}\r\n";
         }
         $message .= '';
 

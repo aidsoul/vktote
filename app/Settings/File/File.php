@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\File;
+namespace Vktote\Settings\File;
 
 /**
  * File class

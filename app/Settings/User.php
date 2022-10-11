@@ -130,6 +130,7 @@ class User
      *
      * @param string $filePath
      * @param string $password
+     * 
      * @return void
      */
     private function create(string $filePath, string $password = ''): void

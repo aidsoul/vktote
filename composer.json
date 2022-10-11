@@ -1,5 +1,7 @@
 {
     "name": "aidsoul/vktote",
+    "type": "project",
+    "description": "Autoposting from a VK group to a Telegram channel",
     "license": "MIT",
     "apcu-autoloader": true,
     "autoload": {

@@ -11,14 +11,7 @@ namespace Vktote\Vk;
 interface ApiInterface
 {
     /**
-     * @param string $token
-     * @param string|integer $idGroup
-     * @param integer $count
-     */ 
-    public function __construct(string $token, string|int $idGroup, int $count);
-
-    /**
      * @return array
      */
-    public static function get(): array;
+    public function get(): array;
 }

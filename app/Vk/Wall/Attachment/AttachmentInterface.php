@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\Wall\Attachment;
+namespace Vktote\Vk\Wall\Attachment;
 
 interface AttachmentInterface
 {
@@ -9,6 +9,7 @@ interface AttachmentInterface
      * Initializing an array of attachments
      *
      * @param array $attachment
+     * 
      * @return void
      */
     public function set(array $attachment): void;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\Wall\Attachment;
+namespace Vktote\Vk\Wall\Attachment;
 
 /**
  * Attachment interface

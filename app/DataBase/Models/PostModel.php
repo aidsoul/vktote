@@ -10,7 +10,7 @@ use Vktote\DataBase\Database;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Post extends Database implements PostInterface
+class PostModel extends Database implements PostInterface
 {
     /**
      * @param string $tableName
@@ -18,9 +18,9 @@ class Post extends Database implements PostInterface
      * @param string $groupId
      */
     public function __construct(
-        private readonly string $tableName = 'post',
-        private readonly string $idPost = 'id_post',
-        private readonly string $groupId = 'group_id'
+        private string $tableName = 'post',
+        private string $idPost = 'id_post',
+        private string $groupId = 'group_id'
     ) {
         parent::__construct();
     }
@@ -47,7 +47,8 @@ class Post extends Database implements PostInterface
      *
      * @param integer $postId
      * @param integer $groupId
-     * @return integer
+     * 
+     * @return int|bool
      */
     public function check(int $postId, int $groupId): int|bool
     {
@@ -61,5 +62,25 @@ class Post extends Database implements PostInterface
             ->fetch();
 
         return  $ask ? $ask[$this->idPost] : false;
+    }
+
+    /**
+     * Get last post
+     *
+     * @param integer $groupId
+     * 
+     * @return int
+     */
+    public function getLastPost(string $groupName): int
+    {
+        $ask = self::$pdo
+            ->select(['MAX(' . $this->idPost . ') as max'])
+            ->from($this->tableName)
+            ->leftJoin('vkgroup')->on('group_id', 'id_group')
+            ->where('name', '=', $groupName)
+            ->execute()
+            ->fetch();
+
+        return  empty($ask['max']) ? 0 : $ask['max'];
     }
 }

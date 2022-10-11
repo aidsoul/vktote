@@ -10,7 +10,7 @@ use Vktote\Message\Message;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-abstract class Config
+abstract class Config implements ConfigInterface
 {
   /**
    *
@@ -24,7 +24,7 @@ abstract class Config
    */
   public static function set(string $сonfigPath): void
   {
-    self::$config = parse_ini_file($сonfigPath, true);
+    self::$config = parse_ini_file($сonfigPath, true);    
   }
 
   /**
@@ -49,34 +49,38 @@ abstract class Config
       $className = (new \ReflectionClass($this))->getShortName();
       if (!empty($property)) {
         if (
-          array_key_exists($className, self::$config) and
-          property_exists($this, $property) and
-          array_key_exists(
-            $property,
-            self::$config[$className]
-          )
+        array_key_exists($className, self::$config) and
+        property_exists($this, $property) and
+        array_key_exists(
+        $property,
+        self::$config[$className]
+        )
         ) {
           $item = self::$config[$className][$property];
           if (!empty($item)) {
             $this->$property = $item;
             if (
-              !method_exists($this, $property) or
-              method_exists($this, $property) and
-              $this->$property() === true
+            !method_exists($this, $property) or
+            method_exists($this, $property) and
+            $this->$property() === true
             ) {
               $this->$property = $item;
               return $this->$property;
             }
-          } else {
+          }
+          else {
             Message::find()->show(false, __TRAIT__, 'propertyNullItem', "[{$className}->[{$property}=>'...']");
           }
-        } else {
+        }
+        else {
           Message::find()->show(false, __TRAIT__, 'property', "[{$className}]->{$property}=>'?'");
         }
-      } else {
+      }
+      else {
         Message::find()->show(false, __TRAIT__, 'propertyNull', "[{$className}->[{$property}=>'...']");
       }
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       throw new \Exception($e);
     }
   }

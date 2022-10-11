@@ -4,8 +4,8 @@ namespace Vktote\Settings;
 
 use Vktote\Config\Config;
 use Vktote\Config\Vk;
-use Vktote\DataBase\Models\Vkgroup;
-use Vktote\File\File;
+use Vktote\DataBase\Models\VkgroupModel;
+use Vktote\Settings\File\File;
 
 /**
  * Group class
@@ -20,7 +20,8 @@ class Group
      * @param integer $status
      * @param string $pathIni
      * @param string $pathPhp
-     * @return void
+     * 
+     * @return array
      */
     private function send(int $status, string $pathIni): array
     {
@@ -39,7 +40,7 @@ class Group
     public function create(): string
     {
         $send = [];
-        $file = new File;
+        $file = new File();
         $file->set($_POST['fileName']);
 
         if (!is_dir($file->folder)) {
@@ -77,7 +78,7 @@ class Group
      */
     public function delete(string $dirName): string
     {
-        $file = new File;
+        $file = new File();
         $file->set($dirName);
         $ret = [];
         if (is_dir($file->folder)) {
@@ -86,7 +87,7 @@ class Group
             try {
                 // delete group from database
                 Config::set($file->iniFullPath);
-                $vk = new Vkgroup;
+                $vk = new VkgroupModel();
                 if ($idGroup = $vk->check(Vk::get()->idGroup)) {
                     $vk->remove($idGroup);
                 } else {
