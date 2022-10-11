@@ -30,7 +30,8 @@ class Attachment implements AttachmentInterface
             $sendArray = $attachment[$type];
             match ($type){
                 'photo' => $this->photo(new Photo($sendArray)),
-                'link' => $this->link(new Link($sendArray))
+                'link' => $this->link(new Link($sendArray)),
+                'video' => $this->video(new Video($sendArray))
             };
         }
     }
@@ -48,14 +49,12 @@ class Attachment implements AttachmentInterface
     /**
      * Video function
      *
-     * !! Add Late
-     * Turn on if it is ready
-     *
      * @return void
      */
-    // private function video():void
-    // {
-    // }
+    private function video(VideoInterface $video): void
+    {
+        $this->cleanAttach['video'][] = $video->get();
+    }
 
     /**
      * Link function

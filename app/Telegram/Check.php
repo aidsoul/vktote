@@ -2,8 +2,8 @@
 
 namespace Vktote\Telegram;
 
-use Vktote\DataBase\Models\Post;
-use Vktote\DataBase\Models\Vkgroup;
+use Vktote\DataBase\Models\PostModel;
+use Vktote\DataBase\Models\VkgroupModel;
 
 /**
  * A class for checking the existence of data in a database
@@ -20,7 +20,7 @@ class Check
      */
     private static function checkIfExistGroup(string|int $groupName): int
     {
-        $vkGroup = new Vkgroup;
+        $vkGroup = new VkgroupModel();
         $getVkGroup = $vkGroup->check($groupName);
         if (!$getVkGroup) {
             $vkGroup->create($groupName);
@@ -35,13 +35,13 @@ class Check
      *
      * @return bool
      */
-    public static function checkIfExistPost(int $postId, string $groupName): bool
+    public static function checkIfExistPost(int $postId, string $groupId): bool
     {
         $status = false;
-        $groupId = self::checkIfExistGroup($groupName);
-        $post = new Post;
-        if (!$post->check($postId, $groupId)) {
-            $post->create($postId, $groupId);
+        $group = self::checkIfExistGroup($groupId);
+        $post = new PostModel();
+        if (!$post->check($postId, $group)) {
+            $post->create($postId, $group);
             $status = true;
         }
 

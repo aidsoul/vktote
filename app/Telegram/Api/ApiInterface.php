@@ -22,7 +22,7 @@ interface ApiInterface
         string $text,
         array $media,
         SendMediaGroupInterface $mediaGroup
-    ): void;
+        ): void;
 
     /**
      * @param string $text
@@ -32,5 +32,5 @@ interface ApiInterface
     public function sendMessage(
         string $text,
         SendMessageInterface $message
-    ): void;
+        ): void;
 }

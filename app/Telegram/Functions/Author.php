@@ -4,6 +4,12 @@ namespace Vktote\Telegram\Functions;
 
 use Vktote\Telegram\Html\Link;
 
+/**
+ * Class Author
+ * 
+ * @author aidsoul work-aidsoul@outlook.com
+ * @license MIT
+ */
 class Author
 {
     /**
@@ -11,7 +17,7 @@ class Author
      * 
      * @return string
      */
-    public static function change(int $author): string
+    public function change(int $author): string
     {
         $link = 'https://vk.com/id';
 
