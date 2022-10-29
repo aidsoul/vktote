@@ -47,8 +47,12 @@ count="Number of posts to capture"
 botApiKey="Bot API Key"
 botName="Bot name"
 chatId="Chat Id for send post"
+[Bot]
+lang = "ENG"
 ```
 If there is a need to use a different database for each profile of the group you need to change the constant "DB_COMMON" in config.php by setting the value to "true". You should also add: DB_HOST, DB_NAME, DB_USER, DB_PASS.
+
+The following bot languages are available: English (ENG) and Russian (RUS).
 
 ## Сontrol panel
 
@@ -78,4 +82,3 @@ Below is an example of running a task for the "test" group profile. Test is spec
 ```
 */5 * * * * php groups/start.php test
 ```
-

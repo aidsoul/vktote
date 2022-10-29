@@ -13,6 +13,7 @@ class File
     private string $configPath;
     private string $iniFile;
     private string $iniFullPath;
+    
     /**
      * Set function
      *

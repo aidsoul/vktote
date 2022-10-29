@@ -30,16 +30,12 @@ class Telegram
             if (Check::checkIfExistPost($v['id'], Vk::get()->idGroup)) {
                 $text = $functions->text()->change($v['text']);
                 if (isset($v['link'])) $text = $functions->link()->change($v['link'], $text);
-
                 if(isset($v['video'])) $text.= $functions->video()->edit($v['video']);
-
                 if ($v['author'] !== 0) $text .= $functions->author()->change($v['author']);
-
                 if (isset($v['media'])) {
                     $api->sendMediaGroup($text, $v['media']);
                     $text = '';
                 }
-
                 if (!empty($text)) $api->sendMessage($text);
             }
         }

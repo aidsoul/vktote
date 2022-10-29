@@ -12,7 +12,6 @@ use Vktote\Config\User as U;
  */
 class User
 {
-
     private string $password;
     private string $path = PATH_GROUP_FOLDER . '/' . USER_CONFIG;
 

@@ -25,10 +25,7 @@ class Text
             foreach ($linkArr[0] as $item) {
                 $linkAhref[] = Link::a($item, '🔗' . parse_url($item)['host']);
             }
-            $text = str_replace($linkArr[0],
-            $linkAhref,
-            $text
-            );
+            $text = str_replace($linkArr[0], $linkAhref, $text);
         }
 
         return $text;

@@ -12,6 +12,7 @@ class User extends Config
 {
     /**
      * Summary of password
+     * 
      * @var string
      */
     protected string $password;

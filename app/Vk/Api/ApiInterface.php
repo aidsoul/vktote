@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\Vk;
+namespace Vktote\Vk\Api;
 
 /**
  * VkApi interface

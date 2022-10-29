@@ -21,7 +21,7 @@ class Group
      * @param string $pathIni
      * @param string $pathPhp
      * 
-     * @return array
+     * @return array<string>
      */
     private function send(int $status, string $pathIni): array
     {

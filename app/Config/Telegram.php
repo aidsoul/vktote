@@ -11,27 +11,23 @@ namespace Vktote\Config;
 class Telegram extends Config
 {
     /**
+     * Bot access key
+     * 
      * @var string
      */
     protected string $botApiKey;
 
     /**
+     * Bot name
+     * 
      * @var string
      */
     protected string $botName;
 
     /**
+     * Chat ID
+     * 
      * @var integer
      */
     protected int $chatId;
-
-    /**
-     * @var boolean
-     */
-    protected bool $webHook;
-
-    /**
-     * @var string
-     */
-    protected string $hookUrl;
 }

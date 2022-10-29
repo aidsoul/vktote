@@ -2,6 +2,7 @@
 
 namespace Vktote\Telegram\Functions;
 
+use Vktote\Lang\Lang;
 use Vktote\Telegram\Html\Link;
 
 /**
@@ -19,7 +20,7 @@ class Video
      */
     public function edit(array $video): string
     {
-        $text = "\r\n" . '🎞Видеоматериалы🎞' . "\r\n";
+        $text = "\r\n" . Lang::get('video') . "\r\n";
         foreach($video as $k=>$value)
         {
             $text .= "\r\n" . '(' . ++$k . ') ' .

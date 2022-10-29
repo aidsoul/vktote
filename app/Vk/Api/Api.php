@@ -1,6 +1,6 @@
 <?php
 
-namespace Vktote\Vk;
+namespace Vktote\Vk\Api;
 
 use GuzzleHttp\Client;
 use Vktote\Config\Vk;
