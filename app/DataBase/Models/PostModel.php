@@ -10,7 +10,7 @@ use Vktote\DataBase\Database;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class PostModel extends Database implements PostInterface
+class PostModel extends Database
 {
     /**
      * @param string $tableName
@@ -18,9 +18,9 @@ class PostModel extends Database implements PostInterface
      * @param string $groupId
      */
     public function __construct(
-        private string $tableName = 'post',
-        private string $idPost = 'id_post',
-        private string $groupId = 'group_id'
+        private readonly string $tableName = 'post',
+        private readonly string $idPost = 'id_post',
+        private readonly string $groupId = 'group_id'
     ) {
         parent::__construct();
     }

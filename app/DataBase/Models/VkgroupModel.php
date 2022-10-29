@@ -10,7 +10,7 @@ use Vktote\DataBase\Database;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class VkgroupModel extends Database implements VkgroupInterface
+class VkgroupModel extends Database
 {
     /**
      * @param string $tableName
@@ -18,9 +18,9 @@ class VkgroupModel extends Database implements VkgroupInterface
      * @param string $name
      */
     public function __construct(
-        private string $tableName = 'vkgroup',
-        private string $idGroup = 'id_group',
-        private string $name = 'name'
+        private readonly string $tableName = 'vkgroup',
+        private readonly string $idGroup = 'id_group',
+        private readonly string $name = 'name'
 
     ) {
         parent::__construct();

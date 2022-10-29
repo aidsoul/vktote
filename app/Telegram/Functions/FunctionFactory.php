@@ -10,22 +10,34 @@ namespace Vktote\Telegram\Functions;
  */
 class FunctionFactory
 {
-    public function video()
+    /**
+     * @return Video
+     */
+    public function video(): Video
     {
         return new Video();
     }
 
-    public function link()
+    /**
+     * @return Link
+     */
+    public function link(): Link
     {
         return new link();
     }
 
-    public function text()
+    /**
+     * @return Text
+     */
+    public function text(): Text
     {
         return new Text();
     }
 
-    public function author()
+    /**
+     * @return Author
+     */
+    public function author(): Author
     {
         return new Author();
     }

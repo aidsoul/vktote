@@ -13,16 +13,22 @@ use Vktote\Message\Message;
 class Vk extends Config
 {
     /**
+     * Application token
+     * 
      * @var string
      */
     protected string $token;
 
     /**
+     * Group identifier or name
+     * 
      * @var string
      */
     protected string $idGroup;
 
     /**
+     * Number of entries to be taken from the group wall
+     * 
      * @var integer
      */
     protected int $count;
@@ -35,7 +41,8 @@ class Vk extends Config
     protected function count(): bool
     {
         if (isset($this->count) and $this->count > 100) {
-            Message::find()->show(false, __CLASS__, 'count');
+            Message::find()->show('Vk', 'count');
+            return false;
         } else {
             return true;
         }

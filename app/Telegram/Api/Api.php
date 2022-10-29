@@ -19,9 +19,12 @@ class Api implements ApiInterface
      */
     private string $link = '';
 
+    /**
+     * @param ClientInterface $client
+     */
     public function __construct(
         private ClientInterface $client = new Client()
-        )
+    )
     {
         $this->link = 'https://api.telegram.org/bot' . T::get()->botApiKey;
     }
@@ -34,13 +37,13 @@ class Api implements ApiInterface
     public function sendMessage(
         string $text,
         SendMessageInterface $message = new SendMessage()
-        ): void
+    ): void
     {
         $this->client->get(
             $this->link . '/sendMessage',
-        [
-            'query' => $message->send($text)
-        ]
+            [
+                'query' => $message->send($text)
+            ]
         );
     }
 
@@ -54,13 +57,13 @@ class Api implements ApiInterface
         string $text,
         array $media,
         SendMediaGroupInterface $mediaGroup = new SendMediaGroup()
-        ): void
+    ): void
     {
         $this->client->get(
             $this->link . '/sendMediaGroup',
-        [
-            'query' => $mediaGroup->send($text, $media)
-        ]
+            [
+                'query' => $mediaGroup->send($text, $media)
+            ]
         );
     }
 }

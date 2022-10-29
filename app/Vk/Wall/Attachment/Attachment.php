@@ -12,7 +12,7 @@ namespace Vktote\Vk\Wall\Attachment;
 class Attachment implements AttachmentInterface
 {
     /**
-     * @var array
+     * @var array<string>
      */
     private array $cleanAttach = [];
 

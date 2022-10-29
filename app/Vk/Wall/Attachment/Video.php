@@ -2,6 +2,8 @@
 
 namespace Vktote\Vk\Wall\Attachment;
 
+use Vktote\Lang\Lang;
+
 /**
  * Video class
  *
@@ -28,7 +30,7 @@ class Video implements VideoInterface
     {
         $title = $this->video['title'] ?? '';
         if($title == "Video unavailable") {
-            $title = 'No name';
+            $title = Lang::get('videoNoName');
         }
         return [
             'caption' => $title,

@@ -10,7 +10,7 @@ use Vktote\Message\Message;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-abstract class Config implements ConfigInterface
+abstract class Config
 {
   /**
    *
@@ -69,15 +69,15 @@ abstract class Config implements ConfigInterface
             }
           }
           else {
-            Message::find()->show(false, __TRAIT__, 'propertyNullItem', "[{$className}->[{$property}=>'...']");
+            Message::find()->show('Config', 'propertyNullItem', "[{$className}->[{$property}=>'...']");
           }
         }
         else {
-          Message::find()->show(false, __TRAIT__, 'property', "[{$className}]->{$property}=>'?'");
+          Message::find()->show('Config', 'property', "[{$className}]->{$property}=>'?'");
         }
       }
       else {
-        Message::find()->show(false, __TRAIT__, 'propertyNull', "[{$className}->[{$property}=>'...']");
+        Message::find()->show('Config', 'propertyNull', "[{$className}->[{$property}=>'...']");
       }
     }
     catch (\Exception $e) {

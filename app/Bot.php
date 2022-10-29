@@ -3,6 +3,7 @@
 namespace Vktote;
 
 use Vktote\Config\Config;
+use Vktote\Lang\Lang;
 use Vktote\Telegram\Telegram;
 use Vktote\Vk\Wall\Wall;
 
@@ -23,6 +24,7 @@ final class Bot
     public static function start(string $сonfigPath): void
     {
         Config::set($сonfigPath);
+        Lang::set();
         (new Telegram)->send(new Wall);
     }
 }

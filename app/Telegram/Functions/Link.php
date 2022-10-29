@@ -2,6 +2,7 @@
 
 namespace Vktote\Telegram\Functions;
 
+use Vktote\Lang\Lang;
 use Vktote\Telegram\Html\Link as HtmlLink;
 
 /**
@@ -24,7 +25,7 @@ class Link
             if (!empty($itmLink['description'])) {
                 $message = $text . "\r\n";
                 $symbol = '[…]';
-                $nextStr = '[читать далее...]';
+                $nextStr = Lang::get('readMore');
                 if (strpos($itmLink['description'], $symbol)) {
                     $linkEdit = str_replace(
                         $symbol,

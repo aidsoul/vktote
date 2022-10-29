@@ -3,14 +3,15 @@
 namespace Vktote\Vk\Wall;
 
 use Generator;
-use Vktote\Vk\Api as VkApi;
-use Vktote\Vk\ApiInterface;
+use Vktote\Vk\Api\Api;
+use Vktote\Vk\Api\ApiInterface;
 use Vktote\Vk\Wall\Attachment\Attachment;
 use Vktote\Vk\Wall\Attachment\AttachmentInterface;
 
 /**
  * Wall
- *
+ * Creating a new array from a wall
+ * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
@@ -36,7 +37,6 @@ class Wall implements WallInterface
      */
     private array $cleanWall = [];
 
-
     /**
      * Get Wall function
      *
@@ -46,7 +46,6 @@ class Wall implements WallInterface
     {
         if (empty($wall))
             exit();
-        $a = $wall->get();
         foreach ($wall->get()['response']['items'] as $currValue) {
             yield $currValue;
         }
@@ -56,6 +55,7 @@ class Wall implements WallInterface
      * Copy history function
      *
      * @param array $copyHistoryData
+     * 
      * @return void
      */
     private function copyHistory(array $copyHistoryData): void
@@ -68,34 +68,34 @@ class Wall implements WallInterface
 
     /**
      * Midle body wall function
-     *
+     * 
      * @param array $attach
+     * @param AttachmentInterface $attachmetAction
+     * 
      * @return void
      */
     private function middleBodyWall(
         array $attach,
-        AttachmentInterface $attachmetAction = new Attachment()
-        ): void
+        AttachmentInterface $attachments = new Attachment()
+    ): void
     {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
-                $attachmetAction->set($valueAttach);
+                $attachments->set($valueAttach);
             }
         }
-
         if (isset($attach['signer_id'])) {
             $this->author = $attach['signer_id'];
-        }
-        else {
+        } else {
             $this->author = 0;
         }
         $this->cleanWall[] =
-        [
-            'id' => $this->id,
-            'text' => $this->text,
-            'author' => $this->author
-        ] +
-            $attachmetAction->get();
+            [
+                'id' => $this->id,
+                'text' => $this->text,
+                'author' => $this->author
+            ] +
+            $attachments->get();
     }
 
     /**
@@ -105,13 +105,12 @@ class Wall implements WallInterface
      */
     private function collect(): void
     {
-        foreach ($this->getWall((new VkApi())) as $value) {
+        foreach ($this->getWall((new Api())) as $value) {
             $this->id = $value['id'];
             $this->text = $value['text'] . "\r\n";
             if (isset($value['copy_history'])) {
                 $this->copyHistory($value['copy_history']);
-            }
-            else {
+            } else {
                 $this->middleBodyWall($value);
             }
         }
