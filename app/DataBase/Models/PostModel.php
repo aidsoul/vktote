@@ -2,7 +2,7 @@
 
 namespace Vktote\DataBase\Models;
 
-use Vktote\DataBase\Database;
+use Vktote\DataBase\DataBase;
 
 /**
  * Post class
@@ -10,7 +10,7 @@ use Vktote\DataBase\Database;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class PostModel extends Database
+class PostModel extends DataBase
 {
     /**
      * @param string $tableName

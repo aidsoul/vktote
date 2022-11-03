@@ -2,7 +2,7 @@
 
 namespace Vktote\DataBase\Models;
 
-use Vktote\DataBase\Database;
+use Vktote\DataBase\DataBase;
 
 /**
  * Vkgroup class
@@ -10,7 +10,7 @@ use Vktote\DataBase\Database;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class VkgroupModel extends Database
+class VkgroupModel extends DataBase
 {
     /**
      * @param string $tableName

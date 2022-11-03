@@ -31,6 +31,7 @@ class Api implements ApiInterface
 
     /**
      * @param string $text
+     * @param SendMessageInterface $message
      * 
      * @return void
      */

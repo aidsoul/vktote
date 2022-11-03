@@ -15,6 +15,7 @@ interface ApiInterface
     /**
      * @param string $text
      * @param array $media
+     * @param SendMediaGroupInterface $mediaGroup
      * 
      * @return void
      */
