@@ -11,7 +11,7 @@ use Vktote\Config\Db as Conf;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-abstract class Database
+abstract class DataBase
 {
 
     protected static Db $pdo;
