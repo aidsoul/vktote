@@ -6,7 +6,7 @@ use Vktote\Config\Bot;
 use Vktote\Message\Message;
 
 /**
- * Enum Lang
+ * Lang class
  *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
