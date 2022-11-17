@@ -45,6 +45,13 @@ $router->map('POST', '/login', [Vktote\Http\Controllers\UserController::class,'l
 // Go to exit
 $router->map('POST','/exit',[Vktote\Http\Controllers\UserController::class,'exit']);
 
+/**
+ * API
+ */
+$router->group('/api', function ($router) {
+    $router->map('GET', '/bot.start', [Vktote\Http\Controllers\ApiCotroller::class, 'botStart']);
+});
+
 try{
     $response = $router->dispatch($request);
     // send the response to the browser

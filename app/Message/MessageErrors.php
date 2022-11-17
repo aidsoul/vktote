@@ -15,5 +15,13 @@ return [
     [
         'property' => 'No such property was found',
         'noLanguageFound' => 'You are using a non-existent language for the bot'
+    ],
+    'Api' => [
+        'notExistGroup' => 'There is no such group.'
+    ],
+    'General' =>
+    [
+        0 => 'Mistake, something went wrong!'
     ]
+
 ];

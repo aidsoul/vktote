@@ -4,7 +4,6 @@ namespace Vktote\Http\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Vktote\Http\Controllers\Controller;
 use Vktote\Http\Controllers\UserInterface;
 use Vktote\Http\Controllers\UserRoleTrait;
 use Vktote\Settings\Group;
@@ -67,6 +66,7 @@ class SettingsController extends Controller implements UserInterface
         $this->response
             ->getBody()
             ->write((new Group)->create());
+
         return $this->response;
     }
 
@@ -82,6 +82,7 @@ class SettingsController extends Controller implements UserInterface
         $this->response
             ->getBody()
             ->write($ask);
+            
         return $this->response;
     }
 }

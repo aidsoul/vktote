@@ -5,7 +5,6 @@ namespace Vktote\Http\Controllers;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Vktote\Bot;
-use Vktote\Http\Controllers\Controller;
 use Vktote\Http\Controllers\UserInterface;
 use Vktote\Http\Controllers\UserRoleTrait;
 
