@@ -14,7 +14,6 @@ use Vktote\Settings\User;
  */
 class Controller
 {
-
     /**
      * @var object
      */

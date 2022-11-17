@@ -4,7 +4,6 @@ namespace Vktote\Http\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Vktote\Http\Controllers\Controller;
 
 /**
  * SiteController class

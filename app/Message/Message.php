@@ -55,6 +55,18 @@ class Message
             exit($message);
         }
     }
+    
+    /**
+     * Get its value by the key
+     * 
+     * @param string $key
+     * @param string $value
+     * @return mixed
+     */
+    public function getByKey(string $key, string $value)
+    {
+        return $this->messageArr[$key][$value];
+    }
 
     /**
      * @param string $fileName

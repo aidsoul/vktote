@@ -21,7 +21,7 @@ final class Bot
      *
      * @return void
      */
-    public static function start(string $сonfigPath): void
+    public static function start(string $сonfigPath = ''): void
     {
         Config::set($сonfigPath);
         Lang::set();
