@@ -6,7 +6,7 @@ use Vktote\DataBase\DataBase;
 
 /**
  * Post class
- * 
+ *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
@@ -30,7 +30,7 @@ class PostModel extends DataBase
      *
      * @param integer $postId
      * @param integer $groupId
-     * 
+     *
      * @return void
      */
     public function create(int $postId, int $groupId): void
@@ -47,7 +47,7 @@ class PostModel extends DataBase
      *
      * @param integer $postId
      * @param integer $groupId
-     * 
+     *
      * @return int|bool
      */
     public function check(int $postId, int $groupId): int|bool
@@ -61,14 +61,14 @@ class PostModel extends DataBase
             ->execute()
             ->fetch();
 
-        return  $ask ? $ask[$this->idPost] : false;
+        return $ask ? $ask[$this->idPost] : false;
     }
 
     /**
      * Get last post
      *
      * @param integer $groupId
-     * 
+     *
      * @return int
      */
     public function getLastPost(string $groupName): int
@@ -81,6 +81,6 @@ class PostModel extends DataBase
             ->execute()
             ->fetch();
 
-        return  empty($ask['max']) ? 0 : $ask['max'];
+        return empty($ask['max']) ? 0 : $ask['max'];
     }
 }

@@ -22,18 +22,15 @@ class Api implements ApiInterface
    */
   private function add(): array
   {
-    $client = new Client();
-    $response = $client->get(
-      'https://api.vk.com/method/wall.get',
-    [
-      'query' => [
-        'access_token' => Vk::get()->token,
-        'v' => '5.131',
-        'domain' => Vk::get()->idGroup,
-        'count' => Vk::get()->count,
-      ]
-    ]
-    );
+    $client = new Client(['verify' => false ]);
+    $response = $client->request('GET', 'https://api.vk.com/method/wall.get', [
+        'query' => [
+            'access_token' => Vk::get()->token,
+            'v' => '5.131',
+            'domain' => Vk::get()->idGroup,
+            'count' => Vk::get()->count,
+        ]
+    ]);
 
     return json_decode($response->getBody(), true);
   }

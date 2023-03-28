@@ -84,7 +84,7 @@ Below is an example of running a task for the "test" group profile. Test is spec
 ```
 ### API
 All API queries start with https://domain/api/
-## bot.start
+#### bot.start
 Accepts a GET request with the parameter "group".
 
 Example: https://domain/api/bot.start?group=group_name
