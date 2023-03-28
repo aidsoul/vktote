@@ -23,7 +23,7 @@ class Api implements ApiInterface
      * @param ClientInterface $client
      */
     public function __construct(
-        private ClientInterface $client = new Client()
+        private ClientInterface $client = new Client(['verify' => false ])
     )
     {
         $this->link = 'https://api.telegram.org/bot' . T::get()->botApiKey;

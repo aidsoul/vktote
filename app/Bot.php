@@ -9,7 +9,7 @@ use Vktote\Vk\Wall\Wall;
 
 /**
  * Start parsing and sending data
- * Entry point in programm
+ * Entry point in program
  * 
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
@@ -21,9 +21,9 @@ final class Bot
      *
      * @return void
      */
-    public static function start(string $сonfigPath = ''): void
+    public static function start(string $configPath = ''): void
     {
-        Config::set($сonfigPath);
+        Config::set($configPath);
         Lang::set();
         (new Telegram)->send(new Wall);
     }

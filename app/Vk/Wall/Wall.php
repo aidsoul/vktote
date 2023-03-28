@@ -11,7 +11,7 @@ use Vktote\Vk\Wall\Attachment\AttachmentInterface;
 /**
  * Wall
  * Creating a new array from a wall
- * 
+ *
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
@@ -44,8 +44,9 @@ class Wall implements WallInterface
      */
     private function getWall(ApiInterface $wall): Generator
     {
-        if (empty($wall))
+        if (empty($wall)) {
             exit();
+        }
         foreach ($wall->get()['response']['items'] as $currValue) {
             yield $currValue;
         }
@@ -55,7 +56,7 @@ class Wall implements WallInterface
      * Copy history function
      *
      * @param array $copyHistoryData
-     * 
+     *
      * @return void
      */
     private function copyHistory(array $copyHistoryData): void
@@ -68,17 +69,16 @@ class Wall implements WallInterface
 
     /**
      * Midle body wall function
-     * 
+     *
      * @param array $attach
      * @param AttachmentInterface $attachmetAction
-     * 
+     *
      * @return void
      */
     private function middleBodyWall(
         array $attach,
         AttachmentInterface $attachments = new Attachment()
-    ): void
-    {
+    ): void {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
                 $attachments->set($valueAttach);

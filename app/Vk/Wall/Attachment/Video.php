@@ -29,7 +29,7 @@ class Video implements VideoInterface
     public function get(): array
     {
         $title = $this->video['title'] ?? '';
-        if($title == "Video unavailable") {
+        if($title === "Video unavailable") {
             $title = Lang::get('videoNoName');
         }
         return [
