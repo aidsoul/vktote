@@ -3,7 +3,7 @@
 namespace Vktote\Vk\Api;
 
 use GuzzleHttp\Client;
-use Vktote\Config\Vk;
+use Vktote\Config\Vk as VkConf;
 
 /**
  * Api
@@ -25,10 +25,10 @@ class Api implements ApiInterface
     $client = new Client(['verify' => false ]);
     $response = $client->request('GET', 'https://api.vk.com/method/wall.get', [
         'query' => [
-            'access_token' => Vk::get()->token,
-            'v' => '5.131',
-            'domain' => Vk::get()->idGroup,
-            'count' => Vk::get()->count,
+            'access_token' => VkConf::get()->token,
+            'v' => VkConf::API_VERSION,
+            'domain' => VkConf::get()->idGroup,
+            'count' => VkConf::get()->count,
         ]
     ]);
 

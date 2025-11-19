@@ -1,14 +1,9 @@
 <?php 
 
 /**
- * 
- * !!! Move to ini files
- */
-
-/**
  * MySQL
  */
-define("DB_COMMON",false);
+define("DB_COMMON", false);
 define("DB_HOST","");
 define("DB_NAME","");
 define("DB_USER","");

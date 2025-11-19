@@ -8,15 +8,8 @@ namespace Vktote\Vk\Wall\Attachment;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Photo implements PhotoInterface
+class Photo extends AttachmentItem
 {
-    /**
-     * @param array $photo
-     */
-    public function __construct(private array $photo)
-    {
-    }
-
     /**
      * Get Best Size Image function
      *
@@ -26,7 +19,7 @@ class Photo implements PhotoInterface
      */
     private function getBestSizeImage(): string
     {
-        return array_pop($this->photo['sizes'])['url'];
+        return array_pop($this->itemArr['sizes'])['url'];
     }
 
     /**
@@ -38,7 +31,7 @@ class Photo implements PhotoInterface
     {
         return [
             'type' => 'photo',
-            'caption' => $this->photo['text'],
+            'caption' => $this->itemArr['text'],
             'media' => $this->getBestSizeImage(),
             'parse_mode' => 'html'
         ];

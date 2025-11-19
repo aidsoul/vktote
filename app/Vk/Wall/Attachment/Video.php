@@ -10,16 +10,7 @@ use Vktote\Lang\Lang;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Video implements VideoInterface
-{
-    /**
-     * Summary of __construct
-     * @param array $video
-     */
-    public function __construct(private array $video)
-    {
-
-    }
+class Video extends AttachmentItem{
 
     /**
      * get function
@@ -28,15 +19,15 @@ class Video implements VideoInterface
      */
     public function get(): array
     {
-        $title = $this->video['title'] ?? '';
+        $title = $this->itemArr['title'] ?? '';
         if($title === "Video unavailable") {
             $title = Lang::get('videoNoName');
         }
         return [
             'caption' => $title,
-            'url' => $this->video['owner_id'] . 
+            'url' => $this->itemArr['owner_id'] . 
             '_' . 
-            $this->video['id'],
+            $this->itemArr['id'],
         ];
     }
 }

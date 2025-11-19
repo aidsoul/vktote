@@ -13,6 +13,12 @@ use Vktote\Message\Message;
 class Vk extends Config
 {
     /**
+     * API Version
+     * 
+     * @var string
+     */
+    public const string API_VERSION = '5.131';
+    /**
      * Application token
      * 
      * @var string
@@ -40,7 +46,7 @@ class Vk extends Config
      */
     protected function count(): bool
     {
-        if (isset($this->count) and $this->count > 100) {
+        if (isset($this->count) and $this->count > 30) {
             Message::find()->show('Vk', 'count');
             return false;
         } else {

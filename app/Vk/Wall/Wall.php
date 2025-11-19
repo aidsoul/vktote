@@ -6,7 +6,6 @@ use Generator;
 use Vktote\Vk\Api\Api;
 use Vktote\Vk\Api\ApiInterface;
 use Vktote\Vk\Wall\Attachment\Attachment;
-use Vktote\Vk\Wall\Attachment\AttachmentInterface;
 
 /**
  * Wall
@@ -71,13 +70,13 @@ class Wall implements WallInterface
      * Midle body wall function
      *
      * @param array $attach
-     * @param AttachmentInterface $attachmetAction
+     * @param Attachment $attachmetAction
      *
      * @return void
      */
     private function middleBodyWall(
         array $attach,
-        AttachmentInterface $attachments = new Attachment()
+        Attachment $attachments = new Attachment()
     ): void {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {

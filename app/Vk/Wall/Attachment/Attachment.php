@@ -9,7 +9,7 @@ namespace Vktote\Vk\Wall\Attachment;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Attachment implements AttachmentInterface
+class Attachment
 {
     /**
      * @var array<string>
@@ -23,15 +23,14 @@ class Attachment implements AttachmentInterface
      * 
      * @return void
      */
-    public function set(array $attachment): void
+    public function set(array &$attachment): void
     {
-        $type = $attachment['type'];
+        $type = &$attachment['type'];
         if (method_exists($this, $type)) {
-            $sendArray = $attachment[$type];
             match ($type){
-                'photo' => $this->photo(new Photo($sendArray)),
-                'link' => $this->link(new Link($sendArray)),
-                'video' => $this->video(new Video($sendArray))
+                'photo' => $this->photo(new Photo($attachment[$type])),
+                'link' => $this->link(new Link($attachment[$type])),
+                'video' => $this->video(new Video($attachment[$type]))
             };
         }
     }
@@ -41,7 +40,7 @@ class Attachment implements AttachmentInterface
      *
      * @return void
      */
-    private function photo(PhotoInterface $photo): void
+    private function photo(Photo $photo): void
     {
         $this->cleanAttach['media'][] = $photo->get();
     }
@@ -51,7 +50,7 @@ class Attachment implements AttachmentInterface
      *
      * @return void
      */
-    private function video(VideoInterface $video): void
+    private function video(Video $video): void
     {
         $this->cleanAttach['video'][] = $video->get();
     }
@@ -61,7 +60,7 @@ class Attachment implements AttachmentInterface
      *
      * @return void
      */
-    private function link(LinkInterface $link): void
+    private function link(Link $link): void
     {
         $this->cleanAttach['link'][] = $link->get();
     }

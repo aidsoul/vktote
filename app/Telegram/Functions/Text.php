@@ -2,6 +2,7 @@
 
 namespace Vktote\Telegram\Functions;
 
+use Vktote\Config\Telegram as TConf;
 use Vktote\Telegram\Html\Link;
 
 /**
@@ -19,6 +20,8 @@ class Text
      */
     public function change(string $text): string
     {
+
+        $text = mb_substr($text, 0, TConf::NUMBER_OF_CHARACTERS, 'UTF-8') . '';
         $paternLink = '#(?:https?|http|ftp|ftps)://[^\s\!$()*+:;%,<>[\]^{|}]+#i';
         if (preg_match_all($paternLink, $text, $linkArr)) {
             $linkAhref = [];
