@@ -8,8 +8,6 @@ require_once 'config.php';
 
 $groupPath = __DIR__ . '/' . PATH_GROUP_FOLDER . '/';
 
-
-
 if (isset($argv[1])) {
 	$groupPath .= $argv[1];
 	if (file_exists($groupPath)) {
