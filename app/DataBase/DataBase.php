@@ -18,16 +18,15 @@ abstract class DataBase
 
     public function __construct()
     {
-        if (!DB_COMMON) {
+        $host = DB_HOST;
+        $dbName = DB_NAME;
+        $user = DB_USER;
+        $pass = DB_PASS;
+        if (DB_COMMON === false) {
             $host = Conf::get()->host;
             $dbName = Conf::get()->dbName;
             $user = Conf::get()->user;
             $pass = Conf::get()->pass;
-        } else {
-            $host = DB_HOST;
-            $dbName = DB_NAME;
-            $user = DB_USER;
-            $pass = DB_PASS;
         }
         try {
             self::$pdo = new Db("mysql:host={$host};dbname={$dbName}", $user, $pass);

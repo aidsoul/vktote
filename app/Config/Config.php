@@ -53,9 +53,7 @@ abstract class Config
         property_exists($this, $property) &&
         array_key_exists(
         $property,
-        self::$config[$className]
-        )
-        ) {
+        self::$config[$className])) {
           $item = self::$config[$className][$property];
           if (!empty($item) || $item != 'pass') {
             $this->$property = $item;

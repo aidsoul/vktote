@@ -8,13 +8,8 @@ namespace Vktote\Vk\Wall\Attachment;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Link implements LinkInterface
+class Link extends AttachmentItem
 {
-
-    public function __construct(private array $link)
-    {
-    }
-
     /**
      * Get function
      *
@@ -23,9 +18,9 @@ class Link implements LinkInterface
     public function get(): array
     {
         return [
-            'url' => $this->link['url'],
-            'title' => $this->link['title'],
-            'description' => $this->link['description']
+            'url' => $this->itemArr['url'],
+            'title' => $this->itemArr['title'],
+            'description' => $this->itemArr['description']
         ];
     }
 }

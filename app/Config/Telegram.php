@@ -11,6 +11,13 @@ namespace Vktote\Config;
 class Telegram extends Config
 {
     /**
+     * Number of text characters
+     * 
+     * @var int
+     */
+    public const int NUMBER_OF_CHARACTERS = 1024;
+    
+    /**
      * Bot access key
      *
      * @var string
@@ -30,4 +37,5 @@ class Telegram extends Config
      * @var integer
      */
     protected int $chatId;
+
 }

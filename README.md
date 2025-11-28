@@ -10,7 +10,7 @@ This is auto-posting from a VK group to a telegram channel.
   
 You need:
  - apache2;
- - php 8.1;
+ - php 8.1 or higher;
  - MySQL.
 
 To install, use the command: `git clone https://github.com/aidsoul/vktote`.
@@ -76,11 +76,11 @@ Use crontab on your server or another task scheduler to get fresh posts without 
 
 Open and add a task to the task list: `crontab-e`.
 
-Get fresh entries every minute: `* * * * * php groups/start.php group_folder`.
+Get fresh entries every minute: `* * * * * php start.php group_folder`.
 
 Below is an example of running a task for the "test" group profile. Test is specified as an argument.
 ```
-*/5 * * * * php groups/start.php test
+*/5 * * * * php start.php test
 ```
 ### API
 All API queries start with https://domain/api/
