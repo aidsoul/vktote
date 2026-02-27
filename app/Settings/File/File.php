@@ -22,7 +22,7 @@ class File
      */
     public function set(string $data): void
     {
-        if (!empty($data)) {
+        if (!empty($data) && preg_match('/^[a-zA-Z0-9_-]+$/', $data)) {
             $this->folder = PATH_GROUP_FOLDER.'/'.$data;
             $this->configPath = $this->folder.'/'.GROUP_CONFIG;
             $this->iniFile = GROUP_CONFIG;

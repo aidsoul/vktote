@@ -25,7 +25,6 @@ define("ERROR_404","404 Page Not Found");
  * User
  */
 define("USER_CONFIG","user.ini");
-define("USER_ACCESS_KEY","DGsg535%$6754gf&4fGd#5");
 
 /**
  * Settings

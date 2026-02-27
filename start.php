@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 $start = microtime(true);
 $memory = memory_get_usage();

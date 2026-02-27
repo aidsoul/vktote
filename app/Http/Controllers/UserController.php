@@ -4,6 +4,7 @@ namespace Vktote\Http\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Vktote\Security\CsrfToken;
 
 /**
  * UserController class
@@ -17,6 +18,17 @@ class UserController extends Controller
      */
     public function login(): ResponseInterface
     {
+        // Validate CSRF token
+        $csrfToken = $_POST['csrf_token'] ?? null;
+        if (!CsrfToken::validate($csrfToken)) {
+            $this->response = $this->response->withHeader('Content-Type', 'application/json');
+            $this->response
+                ->getBody()
+                ->write(json_encode(['status' => -1, 'error' => 'CSRF validation failed']));
+            return $this->response;
+        }
+        
+        $this->response = $this->response->withHeader('Content-Type', 'application/json');
         $this->response
             ->getBody()
             ->write($this->user->checkIfExist());

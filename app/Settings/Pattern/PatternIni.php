@@ -1,27 +1,48 @@
 <?php
+/**
+ * Sanitize input for INI file
+ * @param mixed $value
+ * @return string
+ */
+function sanitizeIniValue(mixed $value): string {
+    if ($value === null) {
+        return '';
+    }
+    // Convert to string
+    $value = (string)$value;
+    // Escape newlines and special characters
+    $value = str_replace(["\r\n", "\r", "\n"], ['\\n', '\\n', '\\n'], $value);
+    // Escape special characters and wrap in quotes
+    return '"' . addcslashes($value, '\\"') . '"';
+}
+
 function patternVkTel()
 {
     return '[Vk]
-token="' . $_POST['token'] . '"
-idGroup="' . $_POST['idGroup'] . '"
-count="' . $_POST['count'] . '"
+token=' . sanitizeIniValue($_POST['token'] ?? '') . '
+idGroup=' . sanitizeIniValue($_POST['idGroup'] ?? '') . '
+count=' . sanitizeIniValue($_POST['count'] ?? '') . '
 [Telegram]
-botApiKey="' . $_POST['botApiKey'] . '"
-botName="' . $_POST['botName'] . '"
-chatId="' . $_POST['chatId'] . '"';
+botApiKey=' . sanitizeIniValue($_POST['botApiKey'] ?? '') . '
+botName=' . sanitizeIniValue($_POST['botName'] ?? '') . '
+chatId=' . sanitizeIniValue($_POST['chatId'] ?? '');
 }
 
 $pattern = '';
 if (DB_COMMON) {
     $pattern = patternVkTel();
 } else {
+    $dbHost = sanitizeIniValue($_POST['host'] ?? '');
+    $dbName = 'mysql:host=' . sanitizeIniValue($_POST['dbName'] ?? '');
+    $dbUser = sanitizeIniValue($_POST['user'] ?? '');
+    $dbPass = sanitizeIniValue($_POST['pass'] ?? '');
+    
     $pattern = '[Db]
-host="' . $_POST['host'] . '"
-dbName="mysql:host=' . $_POST['dbName'] . '"
-user="' . $_POST['user'] . '"
-pass="' . $_POST['pass'] . '"' . "\r\n" . patternVkTel() . "\r\n" .
-        '[Bot] 
-lang = "ENG"';
+host=' . $dbHost . '
+dbName=' . $dbName . '
+user=' . $dbUser . '
+pass=' . $dbPass . "\r\n" . patternVkTel() . "\r\n" .
+        '[Bot]\nlang = "ENG"';
 }
 
 return $pattern;

@@ -16,6 +16,7 @@
 {% endif %}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <form method="POST">
+  {{ csrfToken|raw }}
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -43,8 +44,8 @@
 {% endblock %}
 {% block script %}
 <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
   <script src="/public/js/login.js"></script>
     <script src="/public/js/validations.js"></script>
