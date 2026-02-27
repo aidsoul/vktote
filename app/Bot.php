@@ -2,10 +2,10 @@
 
 namespace Vktote;
 
-use Vktote\Config\Config;
 use Vktote\Lang\Lang;
-use Vktote\Telegram\Telegram;
 use Vktote\Vk\Wall\Wall;
+use Vktote\Config\Config;
+use Vktote\Telegram\Telegram;
 
 /**
  * Start parsing and sending data

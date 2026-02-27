@@ -23,5 +23,4 @@ return [
     [
         0 => 'Mistake, something went wrong!'
     ]
-
 ];

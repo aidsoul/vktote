@@ -4,7 +4,6 @@ namespace Vktote\Vk\Wall;
 
 use Generator;
 use Vktote\Vk\Api\Api;
-use Vktote\Vk\Api\ApiInterface;
 use Vktote\Vk\Wall\Attachment\Attachment;
 
 /**
@@ -14,7 +13,7 @@ use Vktote\Vk\Wall\Attachment\Attachment;
  * @author aidsoul <work-aidsoul@outlook.com>
  * @license MIT
  */
-class Wall implements WallInterface
+class Wall
 {
     /**
      * @var integer
@@ -75,9 +74,8 @@ class Wall implements WallInterface
      * @return void
      */
     private function middleBodyWall(
-        array $attach,
-        Attachment $attachments = new Attachment()
-    ): void {
+        array $attach, 
+        Attachment $attachments = new Attachment()): void {
         if (isset($attach['attachments'])) {
             foreach ($attach['attachments'] as $valueAttach) {
                 $attachments->set($valueAttach);
