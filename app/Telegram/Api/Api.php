@@ -4,7 +4,7 @@ namespace Vktote\Telegram\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use Vktote\Config\Telegram as T;
+use Vktote\Config\Telegram as Tconf;
 
 /**
  * Telegram Api class
@@ -12,7 +12,7 @@ use Vktote\Config\Telegram as T;
  * @license MIT
  * @author aidsoul <work-aidsoul@outlook.com>
  */
-class Api implements ApiInterface
+class Api
 {
     /**
      * @var string
@@ -26,24 +26,26 @@ class Api implements ApiInterface
         private ClientInterface $client = new Client(['verify' => false ])
     )
     {
-        $this->link = 'https://api.telegram.org/bot' . T::get()->botApiKey;
+        $this->link = 'https://api.telegram.org/bot' . Tconf::get()->botApiKey;
     }
 
     /**
      * @param string $text
-     * @param SendMessageInterface $message
+     * @param SendMessage $message
      * 
      * @return void
      */
-    public function sendMessage(
-        string $text,
-        SendMessageInterface $message = new SendMessage()
-    ): void
+    public function sendMessage(string $text): void
     {
         $this->client->get(
             $this->link . '/sendMessage',
             [
-                'query' => $message->send($text)
+                'query' => [
+                    'chat_id' => Tconf::get()->chatId,
+                    'text' => $text,
+                    'parse_mode' => 'html',
+                    'disable_web_page_preview' => true
+                ]
             ]
         );
     }
@@ -54,16 +56,17 @@ class Api implements ApiInterface
      * 
      * @return void
      */
-    public function sendMediaGroup(
-        string $text,
-        array $media,
-        SendMediaGroupInterface $mediaGroup = new SendMediaGroup()
-    ): void
+    public function sendMediaGroup(string $text, array $media): void
     {
+        $media[0]['caption'] = $text;
         $this->client->get(
             $this->link . '/sendMediaGroup',
             [
-                'query' => $mediaGroup->send($text, $media)
+                'query' => [
+                    'chat_id' => Tconf::get()->chatId,
+                    'media' => json_encode($media),
+                    'disable_web_page_preview' => true
+                ]
             ]
         );
     }

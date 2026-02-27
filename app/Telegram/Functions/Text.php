@@ -30,7 +30,7 @@ class Text
             }
             $text = str_replace($linkArr[0], $linkAhref, $text);
         }
-
+        
         return $text;
     }
 }

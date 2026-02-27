@@ -22,7 +22,7 @@ class Api implements ApiInterface
    */
   private function add(): array
   {
-    $client = new Client(['verify' => false ]);
+    $client = new Client(['verify' => false]);
     $response = $client->request('GET', 'https://api.vk.com/method/wall.get', [
         'query' => [
             'access_token' => VkConf::get()->token,

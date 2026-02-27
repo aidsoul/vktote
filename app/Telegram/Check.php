@@ -18,7 +18,7 @@ class Check
      *
      * @return integer
      */
-    private static function checkIfExistGroup(string|int $groupName): int
+    private static function existGroup(string|int $groupName): int
     {
         $vkGroup = new VkgroupModel();
         $getVkGroup = $vkGroup->check($groupName);
@@ -35,10 +35,10 @@ class Check
      *
      * @return bool
      */
-    public static function checkIfExistPost(int $postId, string $groupId): bool
+    public static function existPost(int $postId, string $groupId): bool
     {
         $status = false;
-        $group = self::checkIfExistGroup($groupId);
+        $group = self::existGroup($groupId);
         $post = new PostModel();
         if (!$post->check($postId, $group)) {
             $post->create($postId, $group);
