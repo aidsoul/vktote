@@ -20,7 +20,27 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-<FilesMatch ".(ini)$">
-deny from all
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
 
+# Deny access to sensitive files
+<FilesMatch "^\.htaccess|\.htpasswd|\.env|composer\.json|composer\.lock|\.gitignore$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to configuration and sensitive files
+<FilesMatch "\.(ini|php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow access to public directory
+<FilesMatch "^(robots\.txt|favicon\.ico)$">
+    Order allow,deny
+    Allow from all
 </FilesMatch>

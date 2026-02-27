@@ -29,6 +29,8 @@ $( document ).ready(function() {
     }
     if(itm == 0 ){
         let sendData = Object.fromEntries(dataS);
+        // Add CSRF token
+        sendData.csrf_token = $('input[name="csrf_token"]').val();
         $.ajax({
             method:"POST",
             url: '/settings/group/add/request',
@@ -40,6 +42,10 @@ $( document ).ready(function() {
                     $('#modal-background').css('background','#d1e7dd');
                     message(ask);
                     
+                }else if (ask.status == -1) {
+                    $('#modal-title-message').html('Error: ' + (ask.error || 'CSRF validation failed'));
+                    $('#modal-background').css('background','#f8d7da');
+                    message(ask);
                 }else{
                     $('#modal-title-message').html('Error, such a file already exists!');
                     $('#modal-background').css('background','#f8d7da');

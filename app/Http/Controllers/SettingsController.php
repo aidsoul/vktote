@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Vktote\Http\Controllers\UserInterface;
 use Vktote\Http\Controllers\UserRoleTrait;
 use Vktote\Settings\Group;
+use Vktote\Security\CsrfToken;
 
 /**
  * SettingsController
@@ -51,7 +52,11 @@ class SettingsController extends Controller implements UserInterface
      */
     public function groupAdd(): ResponseInterface
     {
-        $this->writePage('settings/group-add.twig', ['dbCommon' => DB_COMMON]);
+        $csrfToken = CsrfToken::input();
+        $this->writePage('settings/group-add.twig', [
+            'dbCommon' => DB_COMMON,
+            'csrfToken' => $csrfToken
+        ]);
 
         return $this->response;
     }
@@ -63,6 +68,16 @@ class SettingsController extends Controller implements UserInterface
      */
     public function groupAddRequest(): ResponseInterface
     {
+        // Validate CSRF token
+        $csrfToken = $_POST['csrf_token'] ?? null;
+        if (!CsrfToken::validate($csrfToken)) {
+            $this->response = $this->response->withHeader('Content-Type', 'application/json');
+            $this->response
+                ->getBody()
+                ->write(json_encode(['status' => -1, 'error' => 'CSRF validation failed']));
+            return $this->response;
+        }
+        
         $this->response
             ->getBody()
             ->write((new Group)->create());
@@ -78,7 +93,20 @@ class SettingsController extends Controller implements UserInterface
      */
     public function deleteFolderProfile(ServerRequestInterface $request): ResponseInterface
     {
-        $ask = (new Group)->delete($request->getQueryParams()['name']);
+        $params = $request->getQueryParams();
+        $name = $params['name'] ?? '';
+        
+        // Validate input to prevent path traversal
+        if (empty($name) || !preg_match('/^[a-zA-Z0-9_-]+$/', $name)) {
+            $this->response = $this->response->withHeader('Content-Type', 'application/json');
+            $this->response
+                ->getBody()
+                ->write(json_encode(['status' => -1, 'error' => 'Invalid group name']))
+            ;
+            return $this->response;
+        }
+        
+        $ask = (new Group)->delete($name);
         $this->response
             ->getBody()
             ->write($ask);

@@ -40,8 +40,15 @@ class Group
     public function create(): string
     {
         $send = [];
+        $fileName = $_POST['fileName'] ?? '';
+        
+        // Validate input to prevent path traversal
+        if (empty($fileName) || !preg_match('/^[a-zA-Z0-9_-]+$/', $fileName)) {
+            return json_encode(['status' => -1, 'error' => 'Invalid group name']);
+        }
+        
         $file = new File();
-        $file->set($_POST['fileName']);
+        $file->set($fileName);
 
         if (!is_dir($file->folder)) {
             mkdir($file->folder);

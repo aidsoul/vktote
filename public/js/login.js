@@ -15,11 +15,12 @@ $( document ).ready(function() {
         
         }
         let send = $('#password');
+        let csrfToken = $('input[name="csrf_token"]').val();
         $.ajax({
             method:'POST',
             url:'/login',
             dataType:'json',
-            data:{password:send.val()},
+            data:{password:send.val(), csrf_token:csrfToken},
             success:function(data){
                 let status = data.status;
                 
@@ -38,6 +39,9 @@ $( document ).ready(function() {
                 }
                 if(status == 5){
                     alert(0,'Something is wrong with session');
+                }
+                if(status == -1){
+                    alert(0, data.error || 'CSRF validation failed');
                 }
 
             }
